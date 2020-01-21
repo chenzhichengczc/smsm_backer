@@ -58,7 +58,6 @@ public class TransactionAdviceAOP {
         //设置回滚的异常为RuntimeException
         ruleChange.setRollbackRules(Collections.singletonList(new RollbackRuleAttribute(RuntimeException.class)));
 
-
         Map<String, TransactionAttribute> map = new HashMap<>();
         map.put("find*", ruleSelect);
         map.put("query*", ruleSelect);
@@ -81,7 +80,6 @@ public class TransactionAdviceAOP {
         TransactionInterceptor transactionInterceptor = new TransactionInterceptor(platformTransactionManager, source);
         return transactionInterceptor;
     }
-
 
     /**
      * 利用AspectJExpressionPointcut配置切面

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hc.smsm_backer.modules.userapplication.mapper.UserApplicationMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity" id="userApplicationResultMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="postApplicationId" column="post_application_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="paymentStatus" column="payment_status"/>
+        <result property="payId" column="pay_id"/>
+        <result property="checkResult" column="check_result"/>
+        <result property="checkReport" column="check_report"/>
+        <result property="applicantName" column="applicant_name"/>
+        <result property="applicantGender" column="applicant_gender"/>
+        <result property="applicantBirth" column="applicant_birth"/>
+        <result property="applicantPoliticalStatus" column="applicant_political_status"/>
+        <result property="applicantHouseholdRegister" column="applicant_household_register"/>
+        <result property="applicantMarriageStatus" column="applicant_marriage_status"/>
+        <result property="applicantIdentityCard" column="applicant_identity_card"/>
+        <result property="applicantGraduatedTime" column="applicant_graduated_time"/>
+        <result property="applicantGraduatedCollege" column="applicant_graduated_college"/>
+        <result property="applicantEducationalBackground" column="applicant_educational_background"/>
+        <result property="applicantOccupationalQualification" column="applicant_occupational_qualification"/>
+        <result property="applicantMajor" column="applicant_major"/>
+        <result property="applicantEnglishLevel" column="applicant_english_level"/>
+        <result property="applicantComputerLevel" column="applicant_computer_level"/>
+        <result property="applicantContactAddress" column="applicant_contact_address"/>
+        <result property="applicantContactPhone" column="applicant_contact_phone"/>
+        <result property="applicantApplicationPost" column="applicant_application_post"/>
+        <result property="applicantWorkExprience" column="applicant_work_exprience"/>
+        <result property="applicantErgentContact" column="applicant_ergent_contact"/>
+        <result property="applicantErgentPhone" column="applicant_ergent_phone"/>
+        <result property="applicantFamilyRelationship" column="applicant_family_relationship"/>
+        <result property="applicantSignName" column="applicant_sign_name"/>
+        <result property="applicantSignTime" column="applicant_sign_time"/>
+        <result property="applicantPhotoSrc" column="applicant_photo_src"/>
+        <result property="applicantIdentityCardPhoneSrc" column="applicant_identity_card_phone_src"/>
+        <result property="applicantIdentityCardPhoneReverseSrc" column="applicantIdentity_card_phone_reverse_src"></result>
+        <result property="applicantDiplomaSrc" column="applicant_diploma_src"/>
+    </resultMap>
+
+    <resultMap type="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationPO" id="rm">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="postApplicationId" column="post_application_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="paymentStatus" column="payment_status"/>
+        <result property="payId" column="pay_id"/>
+        <result property="checkResult" column="check_result"/>
+        <result property="checkReport" column="check_report"/>
+        <result property="applicantName" column="applicant_name"/>
+        <result property="applicantGender" column="applicant_gender"/>
+        <result property="applicantBirth" column="applicant_birth"/>
+        <result property="applicantPoliticalStatus" column="applicant_political_status"/>
+        <result property="applicantHouseholdRegister" column="applicant_household_register"/>
+        <result property="applicantMarriageStatus" column="applicant_marriage_status"/>
+        <result property="applicantIdentityCard" column="applicant_identity_card"/>
+        <result property="applicantGraduatedTime" column="applicant_graduated_time"/>
+        <result property="applicantGraduatedCollege" column="applicant_graduated_college"/>
+        <result property="applicantEducationalBackground" column="applicant_educational_background"/>
+        <result property="applicantOccupationalQualification" column="applicant_occupational_qualification"/>
+        <result property="applicantMajor" column="applicant_major"/>
+        <result property="applicantEnglishLevel" column="applicant_english_level"/>
+        <result property="applicantComputerLevel" column="applicant_computer_level"/>
+        <result property="applicantContactAddress" column="applicant_contact_address"/>
+        <result property="applicantContactPhone" column="applicant_contact_phone"/>
+        <result property="applicantApplicationPost" column="applicant_application_post"/>
+        <result property="applicantWorkExprience" column="applicant_work_exprience"/>
+        <result property="applicantErgentContact" column="applicant_ergent_contact"/>
+        <result property="applicantErgentPhone" column="applicant_ergent_phone"/>
+        <result property="applicantFamilyRelationship" column="applicant_family_relationship"/>
+        <result property="applicantSignName" column="applicant_sign_name"/>
+        <result property="applicantSignTime" column="applicant_sign_time"/>
+        <result property="applicantPhotoSrc" column="applicant_photo_src"/>
+        <result property="applicantIdentityCardPhoneSrc" column="applicant_identity_card_phone_src"/>
+        <result property="applicantDiplomaSrc" column="applicant_diploma_src"/>
+        <result property="postCode" column="post_code"/>
+        <result property="postName" column="post_name"/>
+        <result property="hireDepartment" column="hire_department"/>
+        <result property="applicationDeadline" column="application_deadline"/>
+        <result property="postDuty" column="post_duty"/>
+        <result property="applicationQualifications" column="application_qualifications"/>
+        <result property="hireAmount" column="hire_amount"/>
+        <result property="major" column="major"/>
+        <result property="educationRequirement" column="education_requirement"/>
+        <result property="age" column="age"/>
+        <result property="otherRequirement" column="other_requirement"/>
+        <result property="recruitment" column="recruitment"/>
+        <result property="userPhone" column="user_phone"/>
+        <result property="userName" column="user_name"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="gender" column="gender"/>
+        <result property="birthTime" column="birth_time"/>
+        <result property="identityCard" column="identity_card"/>
+        <result property="graduatedSchool" column="graduated_school"/>
+    </resultMap>
+
+
+    <select id="getUserApplicationList" resultMap="userApplicationResultMap">
+        SELECT
+                    a.id,
+                    a.user_id,
+                    a.post_application_id,
+                    a.create_time,
+                    a.payment_status,
+                    a.pay_id,
+                    a.check_result,
+                    a.check_report,
+                    a.applicant_name,
+                    a.applicant_gender,
+                    a.applicant_birth,
+                    a.applicant_political_status,
+                    a.applicant_household_register,
+                    a.applicant_marriage_status,
+                    a.applicant_identity_card,
+                    a.applicant_graduated_time,
+                    a.applicant_graduated_college,
+                    a.applicant_educational_background,
+                    a.applicant_occupational_qualification,
+                    a.applicant_major,
+                    a.applicant_english_level,
+                    a.applicant_computer_level,
+                    a.applicant_ergent_contact,
+                    a.applicant_ergent_phone,
+                    a.applicant_application_post,
+                    a.applicant_work_exprience,
+                    a.applicant_contact_address,
+                    a.applicant_contact_phone,
+                    a.applicant_family_relationship,
+                    a.applicant_sign_name,
+                    a.applicant_sign_time,
+                    a.applicant_photo_src,
+                    a.applicant_identity_card_phone_src,
+                    a.applicantIdentity_card_phone_reverse_src
+                FROM user_application a
+    </select>
+
+    <insert id="insertUserApplication">
+        INSERT INTO user_application(
+                    id,
+                    user_id,
+                    post_application_id,
+                    create_time,
+                    payment_status,
+                    pay_id,
+                    check_result,
+                    check_report,
+                    applicant_name,
+                    applicant_gender,
+                    applicant_birth,
+                    applicant_political_status,
+                    applicant_household_register,
+                    applicant_marriage_status,
+                    applicant_identity_card,
+                    applicant_graduated_time,
+                    applicant_graduated_college,
+                    applicant_educational_background,
+                    applicant_occupational_qualification,
+                    applicant_major,
+                    applicant_english_level,
+                    applicant_computer_level,
+                    applicant_ergent_contact,
+                    applicant_ergent_phone,
+                    applicant_application_post,
+                    applicant_work_exprience,
+                    applicant_contact_address,
+                    applicant_contact_phone,
+                    applicant_family_relationship,
+                    applicant_sign_name,
+                    applicant_sign_time,
+                    applicant_photo_src,
+                    applicant_identity_card_phone_src,
+                    applicantIdentity_card_phone_reverse_src
+        )
+        VALUES (
+                    #{id},
+                    #{userId},
+                    #{postApplicationId},
+                    #{createTime},
+                    #{paymentStatus},
+                    #{payId},
+                    #{checkResult},
+                    #{checkReport},
+                    #{applicantName},
+                    #{applicantGender},
+                    #{applicantBirth},
+                    #{applicantPoliticalStatus},
+                    #{applicantHouseholdRegister},
+                    #{applicantMarriageStatus},
+                    #{applicantIdentityCard},
+                    #{applicantGraduatedTime},
+                    #{applicantGraduatedCollege},
+                    #{applicantEducationalBackground},
+                    #{applicantOccupationalQualification},
+                    #{applicantMajor},
+                    #{applicantEnglishLevel},
+                    #{applicantComputerLevel},
+                    #{applicantContactAddress},
+                    #{applicantContactPhone},
+                    #{applicantApplicationPost},
+                    #{applicantWorkExprience},
+                    #{applicantErgentContactPhone},
+                    #{applicantFamilyRelationship},
+                    #{applicantSignName},
+                    #{applicantSignTime},
+                    #{applicantPhotoSrc},
+                    #{applicantIdentityCardPhoneSrc},
+                    #{applicantIdentityCardPhoneReverseSrc}
+                )
+    </insert>
+
+
+    <select id="getUserApplicationById" resultType="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity">
+        SELECT
+                    id,
+                    user_id,
+                    post_application_id,
+                    create_time,
+                    payment_status,
+                    pay_id,
+                    check_result,
+                    check_report,
+                    applicant_name,
+                    applicant_gender,
+                    applicant_birth,
+                    applicant_political_status,
+                    applicant_household_register,
+                    applicant_marriage_status,
+                    applicant_identity_card,
+                    applicant_graduated_time,
+                    applicant_graduated_college,
+                    applicant_educational_background,
+                    applicant_occupational_qualification,
+                    applicant_major,
+                    applicant_english_level,
+                    applicant_computer_level,
+                     applicant_ergent_contact,
+                    applicant_ergent_phone,
+                    applicant_application_post,
+                    applicant_work_exprience,
+                    applicant_contact_address,
+                    applicant_contact_phone,
+                    applicant_family_relationship,
+                    applicant_sign_name,
+                    applicant_sign_time,
+                    applicant_photo_src,
+                    applicant_identity_card_phone_src,
+                    applicantIdentity_card_phone_reverse_src
+        )
+        FROM user_application WHERE id=#{userApplicationId}
+    </select>
+
+
+    <delete id="removeUserApplicationById">
+        DELETE FROM user_application WHERE id=#{userApplicationId}
+    </delete>
+
+    <select id="getUserApplication" resultMap="rm">
+        select
+        a.id,
+        a.user_id,
+        a.post_application_id,
+        a.create_time,
+        a.payment_status,
+        a.pay_id,
+        a.check_result,
+        a.check_report,
+        a.applicant_name,
+        a.applicant_gender,
+        a.applicant_birth,
+        a.applicant_political_status,
+        a.applicant_household_register,
+        a.applicant_marriage_status,
+        a.applicant_identity_card,
+        a.applicant_graduated_time,
+        a.applicant_graduated_college,
+        a.applicant_educational_background,
+        a.applicant_occupational_qualification,
+        a.applicant_major,
+        a.applicant_english_level,
+        a.applicant_computer_level,
+        a.applicant_ergent_contact,
+        a.applicant_ergent_phone,
+        a.applicant_application_post,
+        a.applicant_work_exprience,
+        a.applicant_contact_address,
+        a.applicant_contact_phone,
+        a.applicant_family_relationship,
+        a.applicant_sign_name,
+        a.applicant_sign_time,
+        a.applicant_photo_src,
+        a.applicant_identity_card_phone_src,
+        a.applicantIdentity_card_phone_reverse_src,
+        b.post_code,
+        b.post_name,
+        b.hire_department,
+        b.application_deadline,
+        b.post_duty,
+        b.application_qualifications,
+        b.hire_amount,
+        b.major,
+        b.education_requirement,
+        b.age,
+        b.other_requirement,
+        b.recruitment,
+        c.user_phone,
+        c.user_name,
+        c.user_email,
+        c.gender,
+        c.birth_time,
+        c.identity_card,
+        c.graduated_school
+         from user_application a
+          LEFT JOIN post_application b
+          on a.post_application_id = b.id
+          LEFT JOIN user c ON a.user_id=c.id
+          WHERE 1=1
+          <if test="userName != null and userName != ''">
+            AND c.user_name=#{uesrName}
+          </if>
+        <if test="userPhone != null and userPhone != ''">
+            AND c.user_phone=#{userPhone}
+        </if>
+    </select>
+
+
+
+</mapper>
