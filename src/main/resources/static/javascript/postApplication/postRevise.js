@@ -1,18 +1,59 @@
 $(function () {
 
-    //初始化自增岗位编号
-    var code = getCode()
-    $("#postCode").val(code);
+    var id = getParameter("id");
 
-    laydate.render({
-        elem: '#applicationDeadline',
-        type: 'datetime'
-    });
+    if (id == null || id == "" || id == undefined) {
+        layer.alert("id获取失败，请稍后再试！")
+        return;
+    }
 
+    $.ajax({
+        url:'http://localhost:8080/backer/api/postApplication/selectOne',
+        type:'get', //GET
+        async:false,    //或false,是否异步
+        headers:{
 
-});
+        },
+        data:{
+            id : id
+        },
+        timeout:50000,    //超时时间
+        dataType:'json',    //返回的数据格式：json/xml/val/script/jsonp/text
+        success:function(data){
+            //console.log(data)；
+            if(data.code == 0){
+                var data = data.data;
+                $("#postName").val(data.postName);
+                $("#postCode").val(data.postCode);
+                $("#applicationDeadline").val(data.applicationDeadline);
+                $("#hireDepartment").val(data.hireDepartment);
+                $("#postDuty").val(data.postDuty);
+                $("#hireAmount").val(data.hireAmount);
+                $("#major").val(data.major);
+                $("#educationRequirement").val(data.educationRequirement);
+                $("#ageRange").val(data.ageRange);
+                $("#recruitment").val(data.recruitment);
+                $("#applicationQualifications").val(data.applicationQualifications);
+                $("#otherRequirement").val(data.otherRequirement);
+            }else{
+                layer.msg('获取岗位信息失败', {icon: 2, time: 1000});
+            }
+        },
+        error:function () {
+            alert("服务器异常，请稍后再试！")
+        }
+    })
 
-function sumbitForm() {
+})
+
+function updateForm() {
+
+    var id = getParameter("id");
+
+    if (id == null || id == "" || id == undefined) {
+        layer.alert("id获取失败，请稍后再试！")
+        return;
+    }
     var postCode = $("#postCode").val()
     var postName = $("#postName").val()
     var hireDepartment = $("#hireDepartment").val()
@@ -79,9 +120,9 @@ function sumbitForm() {
     }
 
     $.ajax({
-        url: 'http://localhost:8080/backer/api/postApplication/insertPost',
+        url: 'http://localhost:8080/backer/api/postApplication/updatePost',
         type: 'POST', //GET
-        async:false,    //或false,是否异步
+        async: true,    //或false,是否异步
         headers: {},
         data: {
             postCode: postCode,
@@ -96,23 +137,22 @@ function sumbitForm() {
             recruitment: recruitment,
             applicationQualifications: applicationQualifications,
             otherRequirement: otherRequirement,
-
+            id : id,
         },
         timeout: 50000,    //超时时间
         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success: function (data) {
             //console.log(data)；
             if (data.code == 0) {
-                layer.msg('添加岗位成功', {icon: 1, time: 1000});
+                layer.msg('修改岗位成功', {icon: 1, time: 1000});
                 setTimeout(function () {
                     window.parent.location.reload();
                     var index = parent.layer.getFrameIndex(window.name);
                     parent.layer.close(index);
-
                 }, 1500)
 
             } else {
-                layer.msg('添加岗位失败', {icon: 2, time: 1000});
+                layer.msg('修改岗位失败', {icon: 2, time: 1000});
             }
 
         },
@@ -120,32 +160,12 @@ function sumbitForm() {
             alert("服务器异常，请稍后再试！")
         }
     })
-
-
 }
 
-//获取6位自增
-function getCode() {
-
-    var code = "";
-
-    $.ajax({
-        url: 'http://localhost:8080/backer/api/postApplication/getCode',
-        type: 'get', //GET
-        async: false,    //或false,是否异步
-        headers: {},
-        data: {},
-        timeout: 50000,    //超时时间
-        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-        success: function (data) {
-            if (data.code == 0) {
-                code = data.msg;
-            }
-        },
-        error: function () {
-            alert("服务器异常，请稍后再试！")
-        }
-    })
-    return code;
-
+//从路径获取参数
+function getParameter(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
 }

@@ -25,5 +25,9 @@ public interface PostApplicationService extends IService<PostApplicationEntity> 
     public String getCode();
 
     public void insertPost(PostApplicationEntity postApplicationEntity);
+
+    public void deletePostList(String[] ids);
+
+    public void updatePost(PostApplicationEntity postApplicationEntity);
 }
 

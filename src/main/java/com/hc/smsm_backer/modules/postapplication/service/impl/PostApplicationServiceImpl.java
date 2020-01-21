@@ -10,6 +10,7 @@ import com.hc.smsm_backer.modules.postapplication.entity.PostApplicationEntity;
 import com.hc.smsm_backer.modules.postapplication.service.PostApplicationService;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -21,14 +22,13 @@ public class PostApplicationServiceImpl extends ServiceImpl<PostApplicationMappe
     private PostApplicationMapper postApplicationMapper;
 
 
-
     @Override
     public List<PostApplicationEntity> getPostList(Integer id) {
         List<PostApplicationEntity> postApplicationEntities = null;
         if (id == null) {
-            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>());
+            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().orderBy("application_deadline"));
         } else {
-            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().eq("id", id));
+            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().eq("id", id).orderBy("application_deadline"));
         }
 
         return postApplicationEntities;
@@ -51,8 +51,26 @@ public class PostApplicationServiceImpl extends ServiceImpl<PostApplicationMappe
     @Override
     public void insertPost(PostApplicationEntity postApplicationEntity) {
         Integer row = postApplicationMapper.insert(postApplicationEntity);
-        if(row != 1){
+        if (row != 1) {
             throw new JcException("新增岗位失败");
+        }
+    }
+
+    @Override
+    public void deletePostList(String[] ids) {
+
+        Integer integer = postApplicationMapper.deleteBatchIds(Arrays.asList(ids));
+
+        if (integer == 0 ) {
+            throw new JcException("删除岗位失败");
+        }
+    }
+
+    @Override
+    public void updatePost(PostApplicationEntity postApplicationEntity) {
+        Integer row = postApplicationMapper.update(postApplicationEntity, new EntityWrapper<PostApplicationEntity>().eq("id", postApplicationEntity.getId()));
+        if (row != 1) {
+            throw new JcException("更新岗位失败");
         }
     }
 
