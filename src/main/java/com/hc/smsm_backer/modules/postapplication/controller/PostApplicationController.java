@@ -23,72 +23,40 @@ import com.hc.smsm_backer.modules.postapplication.service.PostApplicationService
  * @date 2020-01-09 19:05:56
  */
 @RestController
+@RequestMapping("/backer")
 public class PostApplicationController {
 
 
     @Autowired
     private PostApplicationService postApplicationService;
 
-    /**
-     * 列表
-     */
-    @RequestMapping(value = "/api/postApplication/list", method = RequestMethod.GET)
-    public ResponseUtil getPostApplicationList(Integer pageNo, Integer pageSize,
-                                               @RequestParam(required = false) String postName,
-                                               @RequestParam(required = false) String hireDepartment,
-                                               @RequestParam(required = false) String recruitment,
-                                               @RequestParam(required = false) String educationRequirement,
-                                               @RequestParam(required = false) String major) {
-        PageHelper.startPage(pageNo, pageSize);
-        List<PostApplicationEntity> postApplicationEntities = postApplicationService.getPostApplicationList(postName,hireDepartment,recruitment,educationRequirement,major);
-        PageInfo<PostApplicationEntity> pageInfo = new PageInfo<>(postApplicationEntities);
-        return ResponseUtil.success(pageInfo);
+
+    // 后台 - 获取工作岗位列表
+    @RequestMapping(value = "/api/postApplication/getPostList",method = RequestMethod.GET)
+    public ResponseUtil getPostList(@RequestParam(value = "id",required = false) Integer id){
+
+        List<PostApplicationEntity> list = postApplicationService.getPostList(id);
+
+        return ResponseUtil.success(list);
     }
 
+    // 后台 - 获取工作编号
+    @RequestMapping(value = "/api/postApplication/getCode",method = RequestMethod.GET)
+    public ResponseUtil getCode(){
 
-   /* *//**
-     * 新增
-     *//*
-    @RequestMapping(value = "/api/postApplication/insert", method = RequestMethod.POST)
-    public ResponseUtil insertPostApplication(PostApplicationEntity postApplicationEntity) {
-        postApplicationService.insertPostApplication(postApplicationEntity);
-        return ResponseUtil.success();
-    }
-*/
-    /**
-     * 获取
-     */
-    @RequestMapping(value = "/api/postApplication/getById", method = RequestMethod.GET)
-    public ResponseUtil getPostApplicationById(Integer postApplicationId) {
-        PostApplicationEntity postApplicationEntity = postApplicationService.getPostApplicationById(postApplicationId);
-        return ResponseUtil.success(postApplicationEntity);
+        String code = postApplicationService.getCode();
+
+        return ResponseUtil.success(code);
     }
 
-    /**
-     * 删除
-     *//*
-    @RequestMapping(value = "/api/postApplication/delete", method = RequestMethod.POST)
-    public ResponseUtil removePostApplicationById(Integer postApplicationId) {
-        postApplicationService.removePostApplicationById(postApplicationId);
+    // 后台 - 获取工作编号
+    @RequestMapping(value = "/api/postApplication/insertPost",method = RequestMethod.POST)
+    public ResponseUtil insertPost(PostApplicationEntity postApplicationEntity){
+
+        postApplicationService.insertPost(postApplicationEntity);
+
         return ResponseUtil.success();
     }
 
-    *//**
-     * 更新
-     *//*
-    @RequestMapping(value = "/api/postApplication/update", method = RequestMethod.POST)
-    public ResponseUtil updatePostApplication(PostApplicationEntity postApplicationEntity) {
-        postApplicationService.updatePostApplication(postApplicationEntity);
-        return ResponseUtil.success();
-    }*/
-
-    //获取多列下拉列表数据
-    @RequestMapping(value = "/api/postApplication/getSelect",method = RequestMethod.GET)
-    public ResponseUtil getSelect(){
-
-        HashMap map = postApplicationService.getSelect();
-
-        return ResponseUtil.success(map);
-    }
 
 }

@@ -1,96 +1,92 @@
-$(function(){
-    $('.table-sort').dataTable({
+$(function () {
 
-        "ajax":{
-            url:"http://localhost:8080/aaa",
-            type:"get",
-            //就是jquery.ajax那里面能设置什么他就能设置什么，其实原理也是把这个配置对象传给jquery.ajax那个函数执行。
-            //除此 他还支持三个特有的参数
-            data:"...",//设置发送给服务器的数据（名称、格式）
-            dataSrc:"...",//这是从服务器接受的数据（名称、格式）
-            success:'...'//回调函数。不要修改！DT会默认使用它。想改交互参数找前两项就行
+    var i = 1;
+
+    var table = $('.table-sort').dataTable({
+
+        "ordering": false,
+        bLengthChange: false,
+
+        "ajax": {
+            "url": "http://localhost:8080/backer/api/userApplication/getUserApplication",
+            "dataSrc": function (data) {
+                $("#totalData").html(data.data.length)
+                return data.data
+            }
         },
+        // "aaSorting": [[ 1, "desc" ]],//默认第几个排序
+        // "bStateSave": true,//状态保存
+        // "aoColumnDefs": [
+        //     //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+        //     {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
+        // ],
+        columns: [{"data": null}, //各列对应的数据列
+            {"data": null},
+            {"data": "userName"},
+            {"data": null},
+            {"data": "userPhone"},
+            {"data": "userEmail"},
+            {"data": "birthTime"},
+            {"data": "graduatedSchool"},
+            {"data": null},
+            {"data": null}],
+        columnDefs: [
+            {
+                targets: 0,
+                render: function (data, type, row) {
+                    var html = "<input type='checkbox' data-id='" + data.id + "'>"
+                    return html
+                }
+            }, {
+                targets: 1,
+                render: function (data, type, row) {
+                    if (i % 11 == 0) {
+                        i = 1;
+                    }
+                    return i++;
+                }
+            }, {
+                targets: 3,
+                render: function (data, type, row) {
+                    var str = "";
+                    if (data.gender == 0) {
+                        str = "<span style='color: royalblue'>男</span>"
+                    } else if (data.gender == 1) {
+                        str = "<span style='color: palevioletred'>女</span>"
+                    }
+                    return str;
+                }
+            }, {
+                targets: 8,
+                render: function (data, type, row) {
 
-        "aaSorting": [[ 1, "desc" ]],//默认第几个排序
-        "bStateSave": true,//状态保存
-        "aoColumnDefs": [
-            //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-            {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
-        ]
+                    var str = "";
+                    if (data.paymentStatus == 0) {
+                        str = "<span style='color: red'>未支付</span>"
+                        return str;
+                    } else if (data.paymentStatus == 1 && data.checkResult == 0) {
+                        str = "<span style='color: darkorange'>审核中</span>"
+                    } else if (data.paymentStatus == 1 && data.checkResult == 1) {
+                        str = "<span style='color: green'>通过</span>"
+                    } else if (data.paymentStatus == 1 && data.checkResult == 2) {
+                        str = "<span style='color: firebrick'>不通过</span>"
+                    }
+                    return str;
+                },
+            }, {
+                targets: 9,
+                render: function (data, type, row) {
+                    return "<a title='查看详情' href='javascript:void(0)' onclick='checkApplication(" + data.id + ")'>查看详情</a>"
+                }
+            }],
+        "fnDrawCallback": function( oSettings ) {
+
+        }
     });
+
+
 });
 
-
-
-/*用户-添加*/
-function member_add(title,url,w,h){
-    layer_show(title,url,w,h);
-}
-/*用户-查看*/
-function member_show(title,url,id,w,h){
-    layer_show(title,url,w,h);
-}
-/*用户-停用*/
-function member_stop(obj,id){
-    layer.confirm('确认要停用吗？',function(index){
-        $.ajax({
-            type: 'POST',
-            url: '',
-            dataType: 'json',
-            success: function(data){
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-                $(obj).remove();
-                layer.msg('已停用!',{icon: 5,time:1000});
-            },
-            error:function(data) {
-                console.log(data.msg);
-            },
-        });
-    });
-}
-
-/*用户-启用*/
-function member_start(obj,id){
-    layer.confirm('确认要启用吗？',function(index){
-        $.ajax({
-            type: 'POST',
-            url: '',
-            dataType: 'json',
-            success: function(data){
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-                $(obj).remove();
-                layer.msg('已启用!',{icon: 6,time:1000});
-            },
-            error:function(data) {
-                console.log(data.msg);
-            },
-        });
-    });
-}
-/*用户-编辑*/
-function member_edit(title,url,id,w,h){
-    layer_show(title,url,w,h);
-}
-/*密码-修改*/
-function change_password(title,url,id,w,h){
-    layer_show(title,url,w,h);
-}
-/*用户-删除*/
-function member_del(obj,id){
-    layer.confirm('确认要删除吗？',function(index){
-        $.ajax({
-            type: 'POST',
-            url: '',
-            dataType: 'json',
-            success: function(data){
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!',{icon:1,time:1000});
-            },
-            error:function(data) {
-                console.log(data.msg);
-            },
-        });
-    });
+function checkApplication(id) {
+    layer_show("查看详情","member-show.html?id=" + id,1000,600)
 }

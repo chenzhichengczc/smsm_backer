@@ -12,6 +12,7 @@ import com.hc.smsm_backer.modules.postapplication.service.PostApplicationService
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class PostApplicationServiceImpl extends ServiceImpl<PostApplicationMapper, PostApplicationEntity> implements PostApplicationService {
@@ -19,64 +20,51 @@ public class PostApplicationServiceImpl extends ServiceImpl<PostApplicationMappe
     @Resource
     private PostApplicationMapper postApplicationMapper;
 
+
+
     @Override
-    public List<PostApplicationEntity> getPostApplicationList(String postName,
-                                                              String hireDepartment,
-                                                              String recruitment,
-                                                              String educationRequirement,
-                                                              String major){
-        List<PostApplicationEntity> postApplicationEntityList = postApplicationMapper.getPostApplicationList(postName,hireDepartment,recruitment,educationRequirement,major);
-        return postApplicationEntityList;
+    public List<PostApplicationEntity> getPostList(Integer id) {
+        List<PostApplicationEntity> postApplicationEntities = null;
+        if (id == null) {
+            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>());
+        } else {
+            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().eq("id", id));
+        }
+
+        return postApplicationEntities;
     }
 
     @Override
-    public void insertPostApplication(PostApplicationEntity postApplicationEntity){
-        Integer result = postApplicationMapper.insertPostApplication(postApplicationEntity);
-        if(result == null || result == 0){
-            throw new JcException("");
+    public String getCode() {
+
+        String code = randon();
+
+        List<PostApplicationEntity> list = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().eq("post_code", code));
+
+        if (list.size() != 0) {
+            return getCode();
+        }
+
+        return code;
+    }
+
+    @Override
+    public void insertPost(PostApplicationEntity postApplicationEntity) {
+        Integer row = postApplicationMapper.insert(postApplicationEntity);
+        if(row != 1){
+            throw new JcException("新增岗位失败");
         }
     }
 
-    @Override
-    public PostApplicationEntity getPostApplicationById(Integer postApplicationId){
-        PostApplicationEntity postApplicationEntity = postApplicationMapper.getPostApplicationById(postApplicationId);
-        return postApplicationEntity;
-    }
+    public String randon() {
+        StringBuilder sb = new StringBuilder();
+        Random rand = new Random();
 
-    @Override
-    public void removePostApplicationById(Integer postApplicationId){
-        Integer result =  postApplicationMapper.removePostApplicationById(postApplicationId);
-        if(result == null || result == 0){
-            throw new JcException("");
+        String code = "";
+        for (int i = 0; i < 6; i++) {
+            sb.append(rand.nextInt(10));
         }
-    }
 
-    @Override
-    public void updatePostApplication(PostApplicationEntity postApplicationEntity){
-        Integer result = postApplicationMapper.updateById(postApplicationEntity);
-        if(result == null || result == 0){
-            throw new JcException("");
-        }
-    }
-
-    @Override
-    public HashMap getSelect() {
-
-        HashMap hashMap = new HashMap();
-
-        List<String> postNameList = postApplicationMapper.selectPostName();
-        List<String> hireDepartmentList = postApplicationMapper.selectHireDepartment();
-        List<String> recruitmentList = postApplicationMapper.selectRecruitment();
-        List<String> educationRequirementList = postApplicationMapper.selectEducationRequirement();
-        List<String> majorList = postApplicationMapper.selectMajor();
-
-        hashMap.put("postNameList",postNameList);
-        hashMap.put("hireDepartmentList",hireDepartmentList);
-        hashMap.put("recruitmentList",recruitmentList);
-        hashMap.put("educationRequirementList",educationRequirementList);
-        hashMap.put("majorList",majorList);
-
-
-        return hashMap;
+        return sb.toString();
     }
 }

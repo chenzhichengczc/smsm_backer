@@ -14,27 +14,5 @@ import java.util.List;
  */
 public interface PostApplicationMapper extends BaseMapper<PostApplicationEntity> {
 
-    public List<PostApplicationEntity> getPostApplicationList(@Param(value = "postName") String postName,
-                                                              @Param(value = "hireDepartment") String hireDepartment,
-                                                              @Param(value = "recruitment") String recruitment,
-                                                              @Param(value = "educationRequirement") String educationRequirement,
-                                                              @Param(value = "major") String major);
 
-
-    public Integer insertPostApplication(PostApplicationEntity postApplicationEntity);
-
-
-    public PostApplicationEntity getPostApplicationById(@Param(value = "postApplicationId") Integer postApplicationId);
-
-    public Integer removePostApplicationById(@Param(value = "postApplicationId") Integer postApplicationId);
-
-    public List<String> selectPostName();
-
-    public List<String> selectHireDepartment();
-
-    public List<String> selectRecruitment();
-
-    public List<String> selectEducationRequirement();
-
-    public List<String> selectMajor();
 }
