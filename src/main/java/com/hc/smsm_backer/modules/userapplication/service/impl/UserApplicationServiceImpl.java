@@ -60,9 +60,9 @@ public class UserApplicationServiceImpl extends ServiceImpl<UserApplicationMappe
     }
 
     @Override
-    public List<UserApplicationPO> getUserApplication(UserEntity userEntity) {
+    public List<UserApplicationPO> getUserApplication(Integer id) {
 
-        List<UserApplicationPO> list = userApplicationMapper.getUserApplication(userEntity);
+        List<UserApplicationPO> list = userApplicationMapper.getUserApplication(id);
         return list;
     }
 }

@@ -11,6 +11,7 @@ import com.hc.smsm_backer.modules.userapplication.service.UserApplicationService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -84,8 +85,8 @@ public class UserApplicationController {
      */
 
     @RequestMapping(value = "/api/userApplication/getUserApplication", method = RequestMethod.GET)
-    public ResponseUtil getUserApplication(UserEntity userEntity){
-        List<UserApplicationPO> userApplication = userApplicationService.getUserApplication(userEntity);
+    public ResponseUtil getUserApplication(@RequestParam(required = false) Integer id){
+        List<UserApplicationPO> userApplication = userApplicationService.getUserApplication(id);
         return ResponseUtil.success(userApplication);
     }
 

@@ -25,7 +25,7 @@ public interface UserApplicationMapper extends BaseMapper<UserApplicationEntity>
 
     public Integer removeUserApplicationById(@Param(value = "userApplicationId") Integer userApplicationId);
 
-    public List<UserApplicationPO> getUserApplication(UserEntity userEntity);
+    public List<UserApplicationPO> getUserApplication(@Param(value = "userApplicationId") Integer id);
 
 
 }
