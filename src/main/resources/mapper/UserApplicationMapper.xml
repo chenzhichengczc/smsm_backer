@@ -318,7 +318,7 @@
           on a.post_application_id = b.id
           LEFT JOIN user c ON a.user_id=c.id
           WHERE 1=1
-          <if test="id != null and id != ''">
+          <if test="id != null">
             AND a.id=#{id}
           </if>
 
