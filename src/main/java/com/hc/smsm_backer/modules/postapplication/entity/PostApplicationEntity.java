@@ -62,7 +62,7 @@ public class PostApplicationEntity implements Serializable {
 		/**
 	 * 年龄
 	 */
-	private Integer age;
+	private String ageRange;
 		/**
 	 * 其他要求
 	 */

@@ -19,45 +19,65 @@
 <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>应聘者查看</title>
+<title>用户查看</title>
 </head>
 <body>
 <div class="cl pd-20" style=" background-color:#5bacb6">
 	<img class="avatar size-XL l" src="../static/h-ui/images/ucnter/avatar-default.jpg">
 	<dl style="margin-left:80px; color:#fff">
 		<dt>
-			<span class="f-18">张三</span>
-			<span class="pl-10 f-12">余额：40</span>
+			<span class="f-18" id="postName"></span>
+			<span class="pl-10 f-12" id="postCode"></span>
 		</dt>
-		<dd class="pt-10 f-12" style="margin-left:0">这家伙很懒，什么也没有留下</dd>
+		<dd class="pt-10 f-12" style="margin-left:0;font-size: 18px;" id="applicationDeadline"></dd>
 	</dl>
 </div>
 <div class="pd-20">
 	<table class="table">
 		<tbody>
 			<tr>
-				<th class="text-r" width="80">性别：</th>
-				<td>男</td>
+				<th class="text-r" width="80">招聘单位：</th>
+				<td id="hireDepartment"></td>
 			</tr>
 			<tr>
-				<th class="text-r">手机：</th>
-				<td>13000000000</td>
+				<th class="text-r">岗位职责：</th>
+				<td id="postDuty"></td>
 			</tr>
 			<tr>
-				<th class="text-r">邮箱：</th>
-				<td>admin@mail.com</td>
+				<th class="text-r">招聘人数：</th>
+				<td id="hireAmount"></td>
 			</tr>
 			<tr>
-				<th class="text-r">地址：</th>
-				<td>北京市 海淀区</td>
+				<th class="text-r">专业：</th>
+				<td id="major"></td>
 			</tr>
 			<tr>
-				<th class="text-r">注册时间：</th>
-				<td>2014.12.20</td>
+				<th class="text-r">学历要求：</th>
+				<td id="educationRequirement"></td>
 			</tr>
 			<tr>
-				<th class="text-r">积分：</th>
-				<td>330</td>
+				<th class="text-r">年龄范围：</th>
+				<td id="ageRange"></td>
+			</tr>
+			<tr>
+				<th class="text-r">招聘对象：</th>
+				<td id="recruitment"></td>
+			</tr>
+			<tr>
+				<th class="text-r">招聘条件：</th>
+				<td id="applicationQualifications"></td>
+			</tr>
+			<tr>
+				<th class="text-r">其他要求：</th>
+				<td id="otherRequirement"></td>
+			</tr>
+			<tr>
+				<th class="text-r">创建时间：</th>
+				<td id="createTime"></td>
+			</tr>
+			<tr>
+				<th class="text-r">更改时间：</th>
+				<td id="updateTime"></td>
 			</tr>
 		</tbody>
 	</table>
@@ -67,7 +87,9 @@
 <script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script>
-<script type="text/javascript" src="../javascript/member/memberShow.js"></script>
+
+<script type="text/javascript" src="../javascript/util.js"></script>
+<script type="text/javascript" src="../javascript/postApplication/postShow.js"></script>
 <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->

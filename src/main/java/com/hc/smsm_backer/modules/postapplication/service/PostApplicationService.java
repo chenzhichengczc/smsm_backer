@@ -20,20 +20,14 @@ import java.util.List;
  */
 public interface PostApplicationService extends IService<PostApplicationEntity> {
 
-    public List<PostApplicationEntity> getPostApplicationList(String postName,
-                                                              String hireDepartment,
-                                                              String recruitment,
-                                                              String educationRequirement,
-                                                              String major);
+    public List<PostApplicationEntity> getPostList(Integer id);
 
-    public void insertPostApplication(PostApplicationEntity postApplicationEntity);
+    public String getCode();
 
-    public PostApplicationEntity getPostApplicationById(Integer postApplicationId);
+    public void insertPost(PostApplicationEntity postApplicationEntity);
 
-    public void removePostApplicationById(Integer postApplicationId);
+    public void deletePostList(String[] ids);
 
-    public void updatePostApplication(PostApplicationEntity postApplicationEntity);
-
-    public HashMap getSelect();
+    public void updatePost(PostApplicationEntity postApplicationEntity);
 }
 

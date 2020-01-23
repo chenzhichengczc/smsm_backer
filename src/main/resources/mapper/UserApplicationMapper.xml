@@ -86,7 +86,7 @@
         <result property="hireAmount" column="hire_amount"/>
         <result property="major" column="major"/>
         <result property="educationRequirement" column="education_requirement"/>
-        <result property="age" column="age"/>
+        <result property="ageRange" column="age_range"/>
         <result property="otherRequirement" column="other_requirement"/>
         <result property="recruitment" column="recruitment"/>
         <result property="userPhone" column="user_phone"/>
@@ -303,7 +303,7 @@
         b.hire_amount,
         b.major,
         b.education_requirement,
-        b.age,
+        b.age_range,
         b.other_requirement,
         b.recruitment,
         c.user_phone,
