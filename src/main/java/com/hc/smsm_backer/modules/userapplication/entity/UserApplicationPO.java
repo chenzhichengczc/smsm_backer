@@ -102,44 +102,8 @@ public class UserApplicationPO {
      * 招聘单位
      */
     private String hireDepartment;
-    /**
-     * 截止时间
-     */
-    private Date applicationDeadline;
-    /**
-     * 岗位职责
-     */
-    private String postDuty;
-    /**
-     * 招聘条件
-     */
-    private String applicationQualifications;
-    /**
-     * 招聘人数
-     */
-    private Integer hireAmount;
-    /**
-     * 专业
-     */
-    private String major;
-    /**
-     * 学历要求
-     */
-    private String educationRequirement;
-    /**
-     * 年龄
-     */
-    private String ageRange;
-    /**
-     * 其他要求
-     */
-    private String otherRequirement;
 
-    /**
-     * 招聘对象
-     */
-    private String recruitment;
-
+    private Integer uid;
     /**
      * 用户姓名
      */

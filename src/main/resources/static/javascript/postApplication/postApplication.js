@@ -31,11 +31,16 @@ $(function () {
                 render: function (data, type, row) {
 
                     var html = '<a style="text-decoration:none" class="ml-5" onclick="showOne(' + data.id + ')" ' +
-                        'href="javascript:;" title="查看"><i class="Hui-iconfont">&#xe683;</i></a>' +
-                        '<a style="text-decoration:none" class="ml-5" onclick="reviseOne(' + data.id + ')" href="javascript:;" title="编辑">' +
-                        '<i class="Hui-iconfont">&#xe6df;</i></a> ' +
-                        '<a style="text-decoration:none" class="ml-5" data-id="' + data.id + '" onclick="deleteOne(this)" ' +
-                        'href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'
+                        'href="javascript:;" title="查看"><i class="Hui-iconfont">&#xe683;</i></a>';
+
+                    if (new Date(data.applicationDeadline) - new Date() >= 0) {
+                        html = html +
+                            '<a style="text-decoration:none" class="ml-5" onclick="reviseOne(' + data.id + ')" href="javascript:;" title="编辑">' +
+                            '<i class="Hui-iconfont">&#xe6df;</i></a> ' +
+                            '<a style="text-decoration:none" class="ml-5" data-id="' + data.id + '" onclick="deleteOne(this)" ' +
+                            'href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'
+                    }
+
 
                     return html
                 }
@@ -86,7 +91,7 @@ function deleteMethod(array) {
     $.ajax({
         url: 'http://localhost:8080/backer/api/postApplication/deletePostList',
         type: 'POST', //GET
-        async:false,    //或false,是否异步
+        async: false,    //或false,是否异步
         headers: {},
         data: {
             ids: array

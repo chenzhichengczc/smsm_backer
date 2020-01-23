@@ -41,18 +41,6 @@ public class UserApplicationController {
         return ResponseUtil.success(userApplicationEntities);
     }
 
-
-
-
-    /**
-    * 新增
-    *//*
-    @RequestMapping(value = "/api/userApplication/insert", method = RequestMethod.POST)
-    public ResponseUtil insertUserApplication(UserApplicationEntity userApplicationEntity){
-        userApplicationService.insertUserApplication(userApplicationEntity);
-        return ResponseUtil.success();
-    }*/
-
     /**
     *  获取
     */
@@ -62,27 +50,6 @@ public class UserApplicationController {
         return ResponseUtil.success(userApplicationEntity);
     }
 
-/*    *//**
-    * 删除
-    *//*
-    @RequestMapping(value = "/api/userApplication/delete", method = RequestMethod.POST)
-    public ResponseUtil removeUserApplicationById(Integer userApplicationId){
-        userApplicationService.removeUserApplicationById(userApplicationId);
-        return ResponseUtil.success();
-    }*/
-
-    /**
-    * 更新
-    *//*
-    @RequestMapping(value = "/api/userApplication/update", method = RequestMethod.POST)
-    public ResponseUtil updateUserApplication(UserApplicationEntity userApplicationEntity){
-        userApplicationService.updateUserApplication(userApplicationEntity);
-        return ResponseUtil.success();
-    }*/
-
-    /**
-     * 查询所有简历投递列表
-     */
 
     @RequestMapping(value = "/api/userApplication/getUserApplication", method = RequestMethod.GET)
     public ResponseUtil getUserApplication(@RequestParam(required = false) Integer id){
@@ -90,13 +57,12 @@ public class UserApplicationController {
         return ResponseUtil.success(userApplication);
     }
 
-   /* *//**
-     * 图片上传
-     *//*
-    @RequestMapping(value = "/file/userApplication/uploadFile",method = RequestMethod.POST)
-    public ResponseUtil uploadFile(MultipartFile uploadFile, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Map<String, Object> map = (Map<String, Object>) FileUploadUtils.uploadApk(uploadFile, request, response);
-        return ResponseUtil.success(map);
-    }*/
+    @RequestMapping(value = "/api/userApplication/changeStatus", method = RequestMethod.POST)
+    public ResponseUtil changeStatus(UserApplicationEntity userApplicationEntity){
+        userApplicationService.changeStatus(userApplicationEntity);
+        return ResponseUtil.success();
+    }
+
+
 
 }

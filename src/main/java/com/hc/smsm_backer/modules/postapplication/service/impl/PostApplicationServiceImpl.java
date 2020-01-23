@@ -26,9 +26,9 @@ public class PostApplicationServiceImpl extends ServiceImpl<PostApplicationMappe
     public List<PostApplicationEntity> getPostList(Integer id) {
         List<PostApplicationEntity> postApplicationEntities = null;
         if (id == null) {
-            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().orderBy("application_deadline"));
+            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().orderBy("create_time",false));
         } else {
-            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().eq("id", id).orderBy("application_deadline"));
+            postApplicationEntities = postApplicationMapper.selectList(new EntityWrapper<PostApplicationEntity>().eq("id", id).orderBy("create_time",false));
         }
 
         return postApplicationEntities;

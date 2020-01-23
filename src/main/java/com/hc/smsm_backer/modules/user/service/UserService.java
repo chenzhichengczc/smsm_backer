@@ -18,13 +18,7 @@ import java.util.List;
  */
 public interface UserService extends IService<UserEntity> {
 
+    public List<UserEntity> getUser(Integer id);
 
-    public void regUser(UserEntity userEntity);
-
-    public UserEntity getUser(String username);
-
-    public void updateUser(UserEntity userEntity);
-
-    public UserEntity getUserById(Integer id);
 }
 
