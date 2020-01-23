@@ -18,6 +18,7 @@ import java.util.Date;
 @TableName("manager")
 @Data
 public class ManagerEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

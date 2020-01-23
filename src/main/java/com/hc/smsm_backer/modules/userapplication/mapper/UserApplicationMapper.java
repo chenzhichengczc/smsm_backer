@@ -1,7 +1,6 @@
 package com.hc.smsm_backer.modules.userapplication.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.hc.smsm_backer.modules.user.entity.UserEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationPO;
 import org.apache.ibatis.annotations.Param;

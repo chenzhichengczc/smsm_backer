@@ -32,7 +32,7 @@ public class JWTUtil {
      * @param username 用户名
      * @return 加密的token
      */
-    public String createToken(String username) {
+    public String createToken(String username, String remoteAddrIp) {
         try {
             String jwtid= UUID.randomUUID().toString();
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);

@@ -28,11 +28,11 @@ public class ManagerController {
     @Resource
     private ManagerService managerService;
 
-    @RequestMapping(value = "/api/manager/login", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/api/manager/login", method = RequestMethod.POST)
     public ResponseUtil login(String loginAccount, String loginPassword) {
         ManagerEntity managerEntity = managerService.login(loginAccount,loginPassword);
         return ResponseUtil.success(managerEntity);
-    }
+    }*/
 
 }
 

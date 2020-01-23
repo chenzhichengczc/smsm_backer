@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.hc.smsm_backer.common.exception.JcException;
 import com.hc.smsm_backer.modules.postapplication.mapper.PostApplicationMapper;
-import com.hc.smsm_backer.modules.user.entity.UserEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationPO;
 import com.hc.smsm_backer.modules.userapplication.mapper.UserApplicationMapper;

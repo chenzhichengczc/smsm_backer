@@ -1,13 +1,13 @@
+/*
 package com.hc.smsm_backer.modules.user.service.impl;
 
-import com.hc.smsm_backer.common.exception.JcException;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.hc.smsm_backer.modules.user.entity.UserEntity;
 import com.hc.smsm_backer.modules.user.mapper.UserMapper;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
-import com.hc.smsm_backer.modules.user.entity.UserEntity;
+
 import com.hc.smsm_backer.modules.user.service.UserService;
 
 import javax.annotation.Resource;
@@ -33,3 +33,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> impleme
     }
 
 }
+*/

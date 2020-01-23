@@ -3,13 +3,10 @@ package com.hc.smsm_backer.modules.user.entity;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-
-import java.io.Serializable;
-
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
-
 /**
  * 用户表
  *
@@ -20,6 +17,7 @@ import java.util.Date;
 @TableName("user")
 @Data
 public class UserEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

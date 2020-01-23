@@ -2,7 +2,6 @@ package com.hc.smsm_backer.modules.userapplication.service;
 
 
 import com.baomidou.mybatisplus.service.IService;
-import com.hc.smsm_backer.modules.user.entity.UserEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationPO;
 

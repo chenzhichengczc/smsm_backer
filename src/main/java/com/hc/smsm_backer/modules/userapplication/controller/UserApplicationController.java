@@ -1,10 +1,6 @@
 package com.hc.smsm_backer.modules.userapplication.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import com.hc.smsm_backer.common.utils.ResponseUtil;
-import com.hc.smsm_backer.modules.user.entity.UserEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity;
 import com.hc.smsm_backer.modules.userapplication.entity.UserApplicationPO;
 import com.hc.smsm_backer.modules.userapplication.service.UserApplicationService;
