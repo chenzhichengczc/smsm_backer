@@ -8,7 +8,7 @@
 	response.setHeader("Content-Type" , "text/html");
 	
 	String rootPath = application.getRealPath( "/" );
-	
-	out.write( new ActionEnter( request, rootPath ).exec() );
+	String saveRootPath = "C:/Users/admin/Desktop/sql";
+	out.write( new ActionEnter( request, rootPath, saveRootPath ).exec() );
 	
 %>

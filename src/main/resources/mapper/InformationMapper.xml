@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hc.smsm_backer.modules.information.mapper.InformationMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.hc.smsm_backer.modules.information.entity.InformationEntity" id="informationResultMap">
+        <result property="id" column="id"/>
+        <result property="informationName" column="information_name"/>
+        <result property="image" column="image"/>
+        <result property="click" column="click"/>
+        <result property="text" column="text"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+
+    <select id="getInformationList" resultMap="informationResultMap">
+        SELECT
+            a.id,
+            a.information_name,
+            a.image,
+            a.click,
+            a.text,
+            a.create_time,
+            a.update_time
+        FROM information a
+        ORDER BY update_time desc
+    </select>
+
+    <insert id="insertInformation">
+        INSERT INTO information(
+                    information_name,
+                    text
+
+        )
+        VALUES (
+                    #{informationName},
+                    #{text}
+
+        )
+    </insert>
+
+
+
+
+    <select id="getInformationById" resultType="com.hc.smsm_backer.modules.information.entity.InformationEntity">
+        SELECT
+            id,
+            information_name,
+            image,
+            click,
+            text,
+            create_time,
+            update_time
+        )
+        FROM information WHERE id=#{informationId}
+    </select>
+
+
+    <delete id="removeInformationById">
+        DELETE FROM information WHERE id=#{informationId}
+    </delete>
+
+</mapper>
