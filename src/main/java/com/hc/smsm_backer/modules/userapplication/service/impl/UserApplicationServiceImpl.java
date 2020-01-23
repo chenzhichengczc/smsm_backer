@@ -1,5 +1,6 @@
 package com.hc.smsm_backer.modules.userapplication.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.hc.smsm_backer.common.exception.JcException;
 import com.hc.smsm_backer.modules.postapplication.mapper.PostApplicationMapper;
@@ -24,37 +25,37 @@ public class UserApplicationServiceImpl extends ServiceImpl<UserApplicationMappe
 
 
     @Override
-    public List<UserApplicationEntity> getUserApplicationList(){
+    public List<UserApplicationEntity> getUserApplicationList() {
         List<UserApplicationEntity> userApplicationEntityList = userApplicationMapper.getUserApplicationList();
         return userApplicationEntityList;
     }
 
     @Override
-    public void insertUserApplication(UserApplicationEntity userApplicationEntity){
+    public void insertUserApplication(UserApplicationEntity userApplicationEntity) {
         Integer result = userApplicationMapper.insertUserApplication(userApplicationEntity);
-        if(result == null || result == 0){
+        if (result == null || result == 0) {
             throw new JcException("");
         }
     }
 
     @Override
-    public UserApplicationEntity getUserApplicationById(Integer userApplicationId){
+    public UserApplicationEntity getUserApplicationById(Integer userApplicationId) {
         UserApplicationEntity userApplicationEntity = userApplicationMapper.getUserApplicationById(userApplicationId);
         return userApplicationEntity;
     }
 
     @Override
-    public void removeUserApplicationById(Integer userApplicationId){
-        Integer result =  userApplicationMapper.removeUserApplicationById(userApplicationId);
-        if(result == null || result == 0){
+    public void removeUserApplicationById(Integer userApplicationId) {
+        Integer result = userApplicationMapper.removeUserApplicationById(userApplicationId);
+        if (result == null || result == 0) {
             throw new JcException("");
         }
     }
 
     @Override
-    public void updateUserApplication(UserApplicationEntity userApplicationEntity){
+    public void updateUserApplication(UserApplicationEntity userApplicationEntity) {
         Integer result = userApplicationMapper.updateById(userApplicationEntity);
-        if(result == null || result == 0){
+        if (result == null || result == 0) {
             throw new JcException("");
         }
     }
@@ -64,5 +65,15 @@ public class UserApplicationServiceImpl extends ServiceImpl<UserApplicationMappe
 
         List<UserApplicationPO> list = userApplicationMapper.getUserApplication(id);
         return list;
+    }
+
+    @Override
+    public void changeStatus(UserApplicationEntity userApplicationEntity) {
+        Integer row = userApplicationMapper.update(userApplicationEntity, new EntityWrapper<UserApplicationEntity>().eq("id", userApplicationEntity.getId()));
+
+        if(row != 1){
+            throw new JcException("审核错误");
+        }
+
     }
 }

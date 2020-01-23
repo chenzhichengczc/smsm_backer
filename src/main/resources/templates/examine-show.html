@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../lib/html5shiv.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>应聘者简历查看</title>
+</head>
+<body>
+<div class="cl pd-20" style=" background-color:#5bacb6">
+    <img class="avatar size-XL l" src="static/h-ui/images/ucnter/avatar-default.jpg">
+    <dl style="margin-left:80px; color:#fff">
+        <dt>
+            <span class="f-18" id="userName"></span>
+        </dt>
+        <dd class="pt-10 f-12" style="margin-left:0" id="userPhone"></dd>
+    </dl>
+</div>
+<div class="pd-20">
+    <table class="table">
+        <tbody>
+        <tr>
+            <th class="text-r" width="110">支付状态：</th>
+            <td id="paymentStatus"></td>
+        </tr>
+        <tr>
+            <th class="text-r">审核状态：</th>
+            <td id="checkResult"></td>
+        </tr>
+        <tr>
+            <th class="text-r">反馈意见：</th>
+            <td id="checkReport"></td>
+        </tr>
+        <tr>
+            <th class="text-r">应聘职位：</th>
+            <td id="applicantApplicationPost"></td>
+        </tr>
+        <tr>
+            <th class="text-r">应聘者姓名：</th>
+            <td id="applicantName"></td>
+        </tr>
+        <tr>
+            <th class="text-r">应聘者性别：</th>
+            <td id="applicantGender"></td>
+        </tr>
+        <tr>
+            <th class="text-r">应聘者出生年月：</th>
+            <td id="applicantBirth"></td>
+        </tr>
+        <tr>
+            <th class="text-r">政治面貌：</th>
+            <td id="applicantPoliticalStatus"></td>
+        </tr>
+        <tr>
+            <th class="text-r">现户籍地：</th>
+            <td id="applicantHouseholdRegister"></td>
+        </tr>
+        <tr>
+            <th class="text-r">婚姻状况：</th>
+            <td id="applicantMarriageStatus"></td>
+        </tr>
+        <tr>
+            <th class="text-r">身份证号：</th>
+            <td id="applicantIdentityCard"></td>
+        </tr>
+        <tr>
+            <th class="text-r">毕业院校：</th>
+            <td id="applicantGraduatedCollege"></td>
+        </tr>
+        <tr>
+            <th class="text-r">毕业时间：</th>
+            <td id="applicantGraduatedTime"></td>
+        </tr>
+        <tr>
+            <th class="text-r">学历及学位：</th>
+            <td id="applicantEducationalBackground"></td>
+        </tr>
+        <tr>
+            <th class="text-r">职业资格/职称：</th>
+            <td id="applicantOccupationalQualification"></td>
+        </tr>
+        <tr>
+            <th class="text-r">专业：</th>
+            <td id="applicantMajor"></td>
+        </tr>
+        <tr>
+            <th class="text-r">英语等级：</th>
+            <td id="applicantEnglishLevel"></td>
+        </tr>
+        <tr>
+            <th class="text-r">计算机等级：</th>
+            <td id="applicantComputerLevel"></td>
+        </tr>
+        <tr>
+            <th class="text-r">通讯地址：</th>
+            <td id="applicantContactAddress"></td>
+        </tr>
+        <tr>
+            <th class="text-r">联系电话：</th>
+            <td id="applicantContactPhone"></td>
+        </tr>
+        <tr>
+            <th class="text-r">主要学习工作经历：</th>
+            <td id="applicantWorkExprience"></td>
+        </tr>
+        <tr>
+            <th class="text-r">紧急联系人：</th>
+            <td id="applicantErgentContact"></td>
+        </tr>
+        <tr>
+            <th class="text-r">紧急联系人电话：</th>
+            <td id="applicantErgentPhone"></td>
+        </tr>
+        <tr>
+            <th class="text-r">家庭成员：</th>
+            <td id="applicantFamilyRelationship"></td>
+        </tr>
+        <tr>
+            <th class="text-r">签署人：</th>
+            <td id="applicantSignName"></td>
+        </tr>
+        <tr>
+            <th class="text-r">签署时间：</th>
+            <td id="applicantSignTime"></td>
+        </tr>
+        <tr>
+            <th class="text-r">申请人照片：</th>
+            <td><img id="applicantPhotoSrc" style="width: 270px;width: 250px"/></td>
+        </tr>
+        <tr>
+            <th class="text-r">身份证正面：</th>
+            <td><img id="applicantIdentityCardPhoneSrc" style="width: 270px;width: 250px"/></td>
+        </tr>
+        <tr>
+            <th class="text-r">身份证反面：</th>
+            <td><img id="applicantIdentityCardPhoneReverseSrc" style="width: 270px;width: 250px"/></td>
+        </tr>
+        <tr>
+            <th class="text-r">学历照片：</th>
+            <td><img id="applicantDiplomaSrc" style="width: 270px;width: 250px"/></td>
+        </tr>
+        <tr>
+            <th class="text-r">操作：</th>
+            <th>
+                <div style="text-align: center;display: none" id="btnGroup">
+                    <a href="javascript:;" onclick="pass()" class="btn btn-success radius"><i class="Hui-iconfont">&#xe6a7;</i> 通过</a>
+                    <a href="javascript:;" onclick="fail()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6a6;</i> 不通过</a>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script>
+
+<script type="text/javascript" src="../javascript/util.js"></script>
+<script type="text/javascript" src="../javascript/examine/examineShow.js"></script>
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+</body>
+</html>

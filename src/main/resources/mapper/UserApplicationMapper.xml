@@ -4,7 +4,8 @@
 <mapper namespace="com.hc.smsm_backer.modules.userapplication.mapper.UserApplicationMapper">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity" id="userApplicationResultMap">
+    <resultMap type="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity"
+               id="userApplicationResultMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
         <result property="postApplicationId" column="post_application_id"/>
@@ -38,7 +39,8 @@
         <result property="applicantSignTime" column="applicant_sign_time"/>
         <result property="applicantPhotoSrc" column="applicant_photo_src"/>
         <result property="applicantIdentityCardPhoneSrc" column="applicant_identity_card_phone_src"/>
-        <result property="applicantIdentityCardPhoneReverseSrc" column="applicantIdentity_card_phone_reverse_src"></result>
+        <result property="applicantIdentityCardPhoneReverseSrc"
+                column="applicantIdentity_card_phone_reverse_src"></result>
         <result property="applicantDiplomaSrc" column="applicant_diploma_src"/>
     </resultMap>
 
@@ -80,22 +82,9 @@
         <result property="postCode" column="post_code"/>
         <result property="postName" column="post_name"/>
         <result property="hireDepartment" column="hire_department"/>
-        <result property="applicationDeadline" column="application_deadline"/>
-        <result property="postDuty" column="post_duty"/>
-        <result property="applicationQualifications" column="application_qualifications"/>
-        <result property="hireAmount" column="hire_amount"/>
-        <result property="major" column="major"/>
-        <result property="educationRequirement" column="education_requirement"/>
-        <result property="ageRange" column="age_range"/>
-        <result property="otherRequirement" column="other_requirement"/>
-        <result property="recruitment" column="recruitment"/>
+        <result property="uid" column="uid"/>
         <result property="userPhone" column="user_phone"/>
         <result property="userName" column="user_name"/>
-        <result property="userEmail" column="user_email"/>
-        <result property="gender" column="gender"/>
-        <result property="birthTime" column="birth_time"/>
-        <result property="identityCard" column="identity_card"/>
-        <result property="graduatedSchool" column="graduated_school"/>
     </resultMap>
 
 
@@ -213,7 +202,8 @@
     </insert>
 
 
-    <select id="getUserApplicationById" resultType="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity">
+    <select id="getUserApplicationById"
+            resultType="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationEntity">
         SELECT
                     id,
                     user_id,
@@ -293,37 +283,26 @@
         a.applicant_sign_time,
         a.applicant_photo_src,
         a.applicant_identity_card_phone_src,
-        a.applicantIdentity_card_phone_reverse_src,
+        a.applicant_identity_card_phone_reverse_src,
+        a. applicant_diploma_src,
         b.post_code,
         b.post_name,
         b.hire_department,
-        b.application_deadline,
-        b.post_duty,
-        b.application_qualifications,
-        b.hire_amount,
-        b.major,
-        b.education_requirement,
-        b.age_range,
-        b.other_requirement,
-        b.recruitment,
+        c.id as uid,
         c.user_phone,
-        c.user_name,
-        c.user_email,
-        c.gender,
-        c.birth_time,
-        c.identity_card,
-        c.graduated_school
-         from user_application a
-          LEFT JOIN post_application b
-          on a.post_application_id = b.id
-          LEFT JOIN user c ON a.user_id=c.id
-          WHERE 1=1
-          <if test="id != null">
+        c.user_name
+
+        from user_application a
+        LEFT JOIN post_application b
+        on a.post_application_id = b.id
+        LEFT JOIN user c ON a.user_id=c.id
+        WHERE 1=1
+        <if test="id != null">
             AND a.id=#{id}
-          </if>
+        </if>
+        order by applicant_sign_time desc
 
     </select>
-
 
 
 </mapper>
