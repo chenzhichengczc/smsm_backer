@@ -13,12 +13,12 @@ import com.baidu.ueditor.hunter.ImageHunter;
 import com.baidu.ueditor.upload.Uploader;
 
 public class ActionEnter {
-	
+
 	private HttpServletRequest request = null;
 	
 	private String rootPath = null;
 	private String contextPath = null;
-	
+
 	private String actionType = null;
 	
 	private ConfigManager configManager = null;
