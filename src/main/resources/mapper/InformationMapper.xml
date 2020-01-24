@@ -12,6 +12,7 @@
         <result property="text" column="text"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
     </resultMap>
 
 
@@ -23,7 +24,8 @@
             a.click,
             a.text,
             a.create_time,
-            a.update_time
+            a.update_time,
+            a.status
         FROM information a
         ORDER BY update_time desc
     </select>
@@ -53,6 +55,7 @@
             text,
             create_time,
             update_time
+            status,
         )
         FROM information WHERE id=#{informationId}
     </select>

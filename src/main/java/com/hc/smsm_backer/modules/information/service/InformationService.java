@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface InformationService extends IService<InformationEntity> {
 
-    public List<InformationEntity> getInformationList();
+    public List<InformationEntity> getInformationList(Integer id);
 
     public void insertInformation(InformationEntity informationEntity);
 
