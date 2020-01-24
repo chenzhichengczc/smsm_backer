@@ -9,7 +9,7 @@ $(function () {
         url: 'http://localhost:8080/backer/api/user/getUser',
         type: 'get', //GET
         async: true,    //或false,是否异步
-        headers: {},
+        headers:{"token": getCookie("token")},
         data: {
             id: id
         },

@@ -6,6 +6,7 @@ $(function () {
 
         "ajax": {
             "url": "http://localhost:8080/backer/api/postApplication/getPostList",
+            "headers":{"token":getCookie("token")},
             "dataSrc": function (data) {
                 $("#totleSize").html(data.data.length)
                 return data.data
@@ -92,7 +93,7 @@ function deleteMethod(array) {
         url: 'http://localhost:8080/backer/api/postApplication/deletePostList',
         type: 'POST', //GET
         async: false,    //或false,是否异步
-        headers: {},
+        headers:{"token": getCookie("token")},
         data: {
             ids: array
         },

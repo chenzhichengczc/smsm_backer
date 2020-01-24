@@ -11,9 +11,7 @@ $(function () {
         url:'http://localhost:8080/backer/api/postApplication/selectOne',
         type:'get', //GET
         async:false,    //或false,是否异步
-        headers:{
-
-        },
+        headers:{"token": getCookie("token")},
         data:{
             id : id
         },

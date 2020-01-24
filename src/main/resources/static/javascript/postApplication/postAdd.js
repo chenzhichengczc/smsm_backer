@@ -82,7 +82,7 @@ function sumbitForm() {
         url: 'http://localhost:8080/backer/api/postApplication/insertPost',
         type: 'POST', //GET
         async:false,    //或false,是否异步
-        headers: {},
+        headers:{"token": getCookie("token")},
         data: {
             postCode: postCode,
             postName: postName,
@@ -133,7 +133,7 @@ function getCode() {
         url: 'http://localhost:8080/backer/api/postApplication/getCode',
         type: 'get', //GET
         async: false,    //或false,是否异步
-        headers: {},
+        headers:{"token": getCookie("token")},
         data: {},
         timeout: 50000,    //超时时间
         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text

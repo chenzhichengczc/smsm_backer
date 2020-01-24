@@ -4,8 +4,8 @@ $(function () {
 
 function loginManager() {
 
-    var username = $("#loginAccount");
-    var password = $("#loginPassword");
+    var username = $("#loginAccount").val();
+    var password = $("#loginPassword").val();
 
 
     $.ajax({
@@ -21,11 +21,14 @@ function loginManager() {
         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success: function (data) {
            if(data.code == 401){
-                alert(data.msg)
-           }else if(data.code = 0){
                layer.msg(data.msg, {icon: 2, time: 1000});
+           }else if(data.code == 0){
+               layer.msg("登录成功，欢迎您", {icon: 1, time: 1000});
                setCookie("token", data.data.token)
-               window.location.href = "http://localhost:8080/index.html";
+               setTimeout(function () {
+                   window.location.href = "http://localhost:8080";
+               },1500)
+
            }
         },
         error: function () {

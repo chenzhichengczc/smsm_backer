@@ -11,7 +11,7 @@ $(function () {
         url: 'http://localhost:8080/backer/api/userApplication/getUserApplication',
         type: 'get', //GET
         async: true,    //或false,是否异步
-        headers: {},
+        headers: {"token": getCookie("token")},
         data: {
             id: id
         },
@@ -204,6 +204,7 @@ function pass() {
                 id: id,
                 checkResult: 1
             },
+            headers:{"token": getCookie("token")},
             success: function (data) {
                 if (data.code == 0) {
                     layer.msg('已审批通过!', {icon: 1, time: 1000});
@@ -250,6 +251,7 @@ function fail() {
                     checkResult: 2,
                     checkReport: $("#checkReport1").val()
                 },
+                headers:{"token": getCookie("token")},
                 success: function (data) {
                     if (data.code == 0) {
                         layer.msg('已审批不通过!', {icon: 1, time: 1000});

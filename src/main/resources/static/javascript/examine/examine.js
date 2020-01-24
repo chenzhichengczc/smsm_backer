@@ -7,6 +7,9 @@ $(function () {
 
         "ajax": {
             "url": "http://localhost:8080/backer/api/userApplication/getUserApplication",
+            "header": {
+                "token": getCookie("token")
+            },
             "dataSrc": function (data) {
                 $("#totleSize").html(data.data.length)
                 return data.data
@@ -100,6 +103,9 @@ function pass(id) {
                 id: id,
                 checkResult: 1
             },
+            "header": {
+                "token": getCookie("token")
+            },
             success: function (data) {
                 if (data.code == 0) {
                     layer.msg('已审批通过!', {icon: 1, time: 1000});
@@ -145,6 +151,9 @@ function fail(id) {
                     id: id,
                     checkResult: 2,
                     checkReport: $("#checkReport").val()
+                },
+                "header": {
+                    "token": getCookie("token")
                 },
                 success: function (data) {
                     if (data.code == 0) {

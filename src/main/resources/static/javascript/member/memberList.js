@@ -9,6 +9,7 @@ $(function () {
 
         "ajax": {
             "url": "http://localhost:8080/backer/api/user/getUser",
+            "headers" :{"token":getCookie("token")},
             "dataSrc": function (data) {
                 $("#totalData").html(data.data.length)
                 return data.data
