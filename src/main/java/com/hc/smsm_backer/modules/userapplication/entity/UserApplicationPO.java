@@ -90,6 +90,16 @@ public class UserApplicationPO {
 
     private String applicantDiplomaSrc;
 
+    private String ticketNumber;
+
+    private Date ticketExamTime;
+
+    private String ticketExamAddressOne;
+
+    private String ticketExamAddressTwo;
+
+    private String ticketRemark;
+
     /**
      * 岗位编码
      */

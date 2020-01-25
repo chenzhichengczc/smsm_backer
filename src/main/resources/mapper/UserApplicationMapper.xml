@@ -42,6 +42,11 @@
         <result property="applicantIdentityCardPhoneReverseSrc"
                 column="applicantIdentity_card_phone_reverse_src"></result>
         <result property="applicantDiplomaSrc" column="applicant_diploma_src"/>
+        <result property="ticketNumber" column="ticket_number"/>
+        <result property="ticketExamTime" column="ticket_exam_time"/>
+        <result property="ticketExamAddressOne" column="ticket_exam_address_one"/>
+        <result property="ticketExamAddressTwo" column="ticket_exam_address_two"/>
+        <result property="ticketRemark" column="ticket_remark"/>
     </resultMap>
 
     <resultMap type="com.hc.smsm_backer.modules.userapplication.entity.UserApplicationPO" id="rm">
@@ -85,6 +90,11 @@
         <result property="uid" column="uid"/>
         <result property="userPhone" column="user_phone"/>
         <result property="userName" column="user_name"/>
+        <result property="ticketNumber" column="ticket_number"/>
+        <result property="ticketExamTime" column="ticket_exam_time"/>
+        <result property="ticketExamAddressOne" column="ticket_exam_address_one"/>
+        <result property="ticketExamAddressTwo" column="ticket_exam_address_two"/>
+        <result property="ticketRemark" column="ticket_remark"/>
     </resultMap>
 
 
@@ -123,7 +133,12 @@
                     a.applicant_sign_time,
                     a.applicant_photo_src,
                     a.applicant_identity_card_phone_src,
-                    a.applicantIdentity_card_phone_reverse_src
+                    a.applicantIdentity_card_phone_reverse_src,
+                    a.ticket_number,
+                    a.ticket_exam_time,
+                    a.ticket_exam_address_one,
+                    a.ticket_exam_address_two,
+                    a.ticket_remark
                 FROM user_application a
     </select>
 
@@ -163,6 +178,11 @@
                     applicant_photo_src,
                     applicant_identity_card_phone_src,
                     applicantIdentity_card_phone_reverse_src
+                    ticket_number,
+                    ticket_exam_time,
+                    ticket_exam_address_one,
+                    ticket_exam_address_two,
+                    ticket_remark
         )
         VALUES (
                     #{id},
@@ -197,7 +217,12 @@
                     #{applicantSignTime},
                     #{applicantPhotoSrc},
                     #{applicantIdentityCardPhoneSrc},
-                    #{applicantIdentityCardPhoneReverseSrc}
+                    #{applicantIdentityCardPhoneReverseSrc},
+                    #{ticketNumber},
+                    #{ticketExamTime},
+                    #{ticketExamAddressOne},
+                    #{ticketExamAddressTwo},
+                    #{ticketRemark}
                 )
     </insert>
 
@@ -227,7 +252,7 @@
                     applicant_major,
                     applicant_english_level,
                     applicant_computer_level,
-                     applicant_ergent_contact,
+                    applicant_ergent_contact,
                     applicant_ergent_phone,
                     applicant_application_post,
                     applicant_work_exprience,
@@ -238,7 +263,12 @@
                     applicant_sign_time,
                     applicant_photo_src,
                     applicant_identity_card_phone_src,
-                    applicantIdentity_card_phone_reverse_src
+                    applicantIdentity_card_phone_reverse_src,
+                    ticket_number,
+                    ticket_exam_time,
+                    ticket_exam_address_one,
+                    ticket_exam_address_two,
+                    ticket_remark
         )
         FROM user_application WHERE id=#{userApplicationId}
     </select>
@@ -285,6 +315,11 @@
         a.applicant_identity_card_phone_src,
         a.applicant_identity_card_phone_reverse_src,
         a. applicant_diploma_src,
+        a.ticket_number,
+        a.ticket_exam_time,
+        a.ticket_exam_address_one,
+        a.ticket_exam_address_two,
+        a.ticket_remark,
         b.post_code,
         b.post_name,
         b.hire_department,

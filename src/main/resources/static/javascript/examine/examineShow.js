@@ -181,6 +181,11 @@ $(function () {
                 $("#applicantIdentityCardPhoneSrc").attr("src", data.applicantIdentityCardPhoneSrc)
                 $("#applicantIdentityCardPhoneReverseSrc").attr("src", data.applicantIdentityCardPhoneReverseSrc)
                 $("#applicantDiplomaSrc").attr("src", data.applicantDiplomaSrc)
+                $("#ticketNumber").html(data.ticketNumber)
+                $("#ticketExamTime").html(data.ticketExamTime)
+                $("#ticketExamAddressOne").html(data.ticketExamAddressOne)
+                $("#ticketExamAddressTwo").html(data.ticketExamAddressTwo)
+                $("#ticketRemark").html(data.ticketRemark)
 
             } else {
                 layer.msg('获取简历信息失败', {icon: 2, time: 1000});

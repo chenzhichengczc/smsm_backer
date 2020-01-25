@@ -19,21 +19,56 @@ public class ManagerServiceImpl extends ServiceImpl<ManagerMapper, ManagerEntity
 
 
     @Override
-    public ManagerEntity login(String loginAccount, String loginPassword) {
+    public List<ManagerEntity> managerList(Integer id) {
+        List<ManagerEntity> managerEntities = null;
+        if (id == null) {
+            managerEntities = managerMapper.selectList(new EntityWrapper<ManagerEntity>());
+        } else {
+            managerEntities = managerMapper.selectList(new EntityWrapper<ManagerEntity>().eq("id", id));
+        }
+        return managerEntities;
+    }
 
-        List<ManagerEntity> login_account = managerMapper.selectList(new EntityWrapper<ManagerEntity>().eq("login_account", loginAccount));
+    @Override
+    public void insertManager(ManagerEntity managerEntity) {
 
-        ManagerEntity managerEntity = null;
+        List<ManagerEntity> login_account = managerMapper.selectList(new EntityWrapper<ManagerEntity>().eq("login_account", managerEntity.getLoginAccount()));
 
-        if(login_account == null){
-            throw new JcException("账号不存在");
-        }else{
-            managerEntity = login_account.get(0);
-            if(!(managerEntity.getLoginPassword().equals(loginPassword))){
-                throw new JcException("账号或密码错误");
-            }
+        if (login_account.size() != 0) {
+            throw new JcException("账号已存在，请重新输入");
         }
 
-        return managerEntity;
+        Integer insert = managerMapper.insert(managerEntity);
+
+        if (insert != 1) {
+            throw new JcException("管理员插入失败");
+        }
+    }
+
+    @Override
+    public void updateStatus(ManagerEntity managerEntity) {
+        Integer row = managerMapper.update(managerEntity, new EntityWrapper<ManagerEntity>().eq("id", managerEntity.getId()));
+
+        if (row != 1) {
+            throw new JcException("更新状态失败");
+        }
+
+    }
+
+    @Override
+    public void deleteManager(Integer id) {
+        Integer row = managerMapper.delete(new EntityWrapper<ManagerEntity>().eq("id", id));
+
+        if (row != 1) {
+            throw new JcException("删除信息失败");
+        }
+    }
+
+    @Override
+    public void updateManager(ManagerEntity managerEntity) {
+        Integer row = managerMapper.update(managerEntity,new EntityWrapper<ManagerEntity>().eq("id",managerEntity.getId()));
+        if (row != 1) {
+            throw new JcException("信息更新失败");
+        }
     }
 }

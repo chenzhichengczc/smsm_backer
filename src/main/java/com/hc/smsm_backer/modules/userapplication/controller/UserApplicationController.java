@@ -53,9 +53,9 @@ public class UserApplicationController {
         return ResponseUtil.success(userApplication);
     }
 
-    @RequestMapping(value = "/api/userApplication/changeStatus", method = RequestMethod.POST)
-    public ResponseUtil changeStatus(UserApplicationEntity userApplicationEntity){
-        userApplicationService.changeStatus(userApplicationEntity);
+    @RequestMapping(value = "/api/userApplication/updateStatusAndTicket", method = RequestMethod.POST)
+    public ResponseUtil updateStatusAndTicket(UserApplicationEntity userApplicationEntity){
+        userApplicationService.updateStatusAndTicket(userApplicationEntity);
         return ResponseUtil.success();
     }
 

@@ -108,5 +108,15 @@ public class UserApplicationEntity implements Serializable {
 
     private String applicantDiplomaSrc;
 
+    private String ticketNumber;
+
+    private Date ticketExamTime;
+
+    private String ticketExamAddressOne;
+
+    private String ticketExamAddressTwo;
+
+    private String ticketRemark;
+
 }
 
