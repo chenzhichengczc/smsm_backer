@@ -5,7 +5,7 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://localhost:8080/backer/api/postApplication/getPostList",
+            "url": "http://123.207.230.97:8090/backer/api/postApplication/getPostList",
             "dataSrc": function (data) {
                 $("#totleSize").html(data.data.length)
                 return data.data
@@ -89,7 +89,7 @@ function datadel() {
 
 function deleteMethod(array) {
     $.ajax({
-        url: 'http://localhost:8080/backer/api/postApplication/deletePostList',
+        url: 'http://123.207.230.97:8090/backer/api/postApplication/deletePostList',
         type: 'POST', //GET
         async: false,    //或false,是否异步
         headers: {},

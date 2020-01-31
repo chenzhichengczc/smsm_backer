@@ -8,7 +8,7 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://localhost:8080/backer/api/user/getUser",
+            "url": "http://123.207.230.97:8090/backer/api/user/getUser",
             "dataSrc": function (data) {
                 $("#totalData").html(data.data.length)
                 return data.data

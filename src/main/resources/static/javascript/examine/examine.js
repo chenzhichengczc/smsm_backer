@@ -6,7 +6,7 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://localhost:8080/backer/api/userApplication/getUserApplication",
+            "url": "http://123.207.230.97:8090/backer/api/userApplication/getUserApplication",
             "dataSrc": function (data) {
                 $("#totleSize").html(data.data.length)
                 return data.data
@@ -94,7 +94,7 @@ function pass(id) {
     layer.confirm('是否提交通过？', function (index) {
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/backer/api/userApplication/changeStatus',
+            url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
             dataType: 'json',
             data: {
                 id: id,
@@ -139,7 +139,7 @@ function fail(id) {
         btn1: function (index, layero) {
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:8080/backer/api/userApplication/changeStatus',
+                url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
                 dataType: 'json',
                 data: {
                     id: id,

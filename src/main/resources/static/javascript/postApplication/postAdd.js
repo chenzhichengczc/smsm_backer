@@ -79,7 +79,7 @@ function sumbitForm() {
     }
 
     $.ajax({
-        url: 'http://localhost:8080/backer/api/postApplication/insertPost',
+        url: 'http://123.207.230.97:8090/backer/api/postApplication/insertPost',
         type: 'POST', //GET
         async:false,    //或false,是否异步
         headers: {},
@@ -130,7 +130,7 @@ function getCode() {
     var code = "";
 
     $.ajax({
-        url: 'http://localhost:8080/backer/api/postApplication/getCode',
+        url: 'http://123.207.230.97:8090/backer/api/postApplication/getCode',
         type: 'get', //GET
         async: false,    //或false,是否异步
         headers: {},

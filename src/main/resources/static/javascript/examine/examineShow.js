@@ -8,7 +8,7 @@ $(function () {
     }
 
     $.ajax({
-        url: 'http://localhost:8080/backer/api/userApplication/getUserApplication',
+        url: 'http://123.207.230.97:8090/backer/api/userApplication/getUserApplication',
         type: 'get', //GET
         async: true,    //或false,是否异步
         headers: {},
@@ -198,7 +198,7 @@ function pass() {
     layer.confirm('是否提交通过？', function (index) {
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/backer/api/userApplication/changeStatus',
+            url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
             dataType: 'json',
             data: {
                 id: id,
@@ -243,7 +243,7 @@ function fail() {
         btn1: function (index, layero) {
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:8080/backer/api/userApplication/changeStatus',
+                url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
                 dataType: 'json',
                 data: {
                     id: id,

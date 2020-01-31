@@ -8,7 +8,7 @@ $(function () {
     }
 
     $.ajax({
-        url:'http://localhost:8080/backer/api/postApplication/selectOne',
+        url:'http://123.207.230.97:8090/backer/api/postApplication/selectOne',
         type:'get', //GET
         async:false,    //或false,是否异步
         headers:{

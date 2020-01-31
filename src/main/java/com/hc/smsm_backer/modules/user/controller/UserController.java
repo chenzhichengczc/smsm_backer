@@ -1,4 +1,4 @@
-/*
+
 package com.hc.smsm_backer.modules.user.controller;
 
 
@@ -24,14 +24,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-*/
+
 /**
  * 用户表
  *
  * @author fenghuang
  * @email
  * @date 2020-01-11 19:16:46
- *//*
+ */
 
 
 @RestController
@@ -54,4 +54,4 @@ public class UserController {
 }
 
 
-*/
+

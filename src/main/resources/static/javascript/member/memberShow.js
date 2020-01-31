@@ -6,7 +6,7 @@ $(function () {
         return;
     }
     $.ajax({
-        url: 'http://localhost:8080/backer/api/user/getUser',
+        url: 'http://123.207.230.97:8090/backer/api/user/getUser',
         type: 'get', //GET
         async: true,    //或false,是否异步
         headers: {},
