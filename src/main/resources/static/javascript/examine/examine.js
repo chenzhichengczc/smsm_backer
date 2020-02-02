@@ -6,7 +6,10 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://123.207.230.97:8090/backer/api/userApplication/getUserApplication",
+            "url": "http://106.52.215.30:80/backer/api/userApplication/getUserApplication",
+            "header": {
+                "token": getCookie("token")
+            },
             "dataSrc": function (data) {
                 $("#totleSize").html(data.data.length)
                 return data.data
@@ -68,7 +71,7 @@ $(function () {
 
                     if (data.paymentStatus != 0 && data.checkResult == 0) {
                         html = html +
-                            '<a style="text-decoration:none" class="ml-5" onclick="pass(' + data.id + ')" href="javascript:;" title="通过">' +
+                            '<a style="text-decoration:none" class="ml-5" onclick="pass(' + data.id + ',\'' + data.applicantName + '\',' + data.applicantGender + ',\'' + window.btoa(data.applicantIdentityCard) + '\')" href="javascript:;" title="通过/生成准考证">' +
                             '<i class="Hui-iconfont">&#xe6a7;</i></a> ' +
                             '<a style="text-decoration:none" class="ml-5" onclick="fail(' + data.id + ')" ' +
                             'href="javascript:;" title="不通过"><i class="Hui-iconfont">&#xe6a6;</i></a>'
@@ -90,34 +93,10 @@ function showOne(id) {
     layer_show("应聘者详情", "member-show.html?id=" + id, 800, 600);
 }
 
-function pass(id) {
-    layer.confirm('是否提交通过？', function (index) {
-        $.ajax({
-            type: 'POST',
-            url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
-            dataType: 'json',
-            data: {
-                id: id,
-                checkResult: 1
-            },
-            success: function (data) {
-                if (data.code == 0) {
-                    layer.msg('已审批通过!', {icon: 1, time: 1000});
-                    setTimeout(function () {
-                        window.location.reload();
-                        var index = parent.layer.getFrameIndex(window.name);
-                        parent.layer.close(index);
-                    }, 1500)
-                } else {
-                    layer.msg('服务器异常!', {icon: 2, time: 1000});
-                }
+function pass(id, applicantName, applicantGender, applicantIdentityCard) {
+    var name = encodeURI(applicantName)
+    layer_show("生成准考证", "ticket-add.html?id=" + id + "&applicantName=" + name + "&applicantGender=" + applicantGender + "&applicantIdentityCard=" + applicantIdentityCard, 800, 600);
 
-            },
-            error: function (data) {
-                layer.msg('服务器异常!', {icon: 2, time: 1000});
-            },
-        });
-    });
 }
 
 function fail(id) {
@@ -139,12 +118,15 @@ function fail(id) {
         btn1: function (index, layero) {
             $.ajax({
                 type: 'POST',
-                url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
+                url: 'http://106.52.215.30:80/backer/api/userApplication/changeStatus',
                 dataType: 'json',
                 data: {
                     id: id,
                     checkResult: 2,
                     checkReport: $("#checkReport").val()
+                },
+                "header": {
+                    "token": getCookie("token")
                 },
                 success: function (data) {
                     if (data.code == 0) {

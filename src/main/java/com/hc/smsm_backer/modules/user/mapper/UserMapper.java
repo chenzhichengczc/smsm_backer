@@ -7,3 +7,4 @@ import com.hc.smsm_backer.modules.user.entity.UserEntity;
 public interface UserMapper extends BaseMapper<UserEntity> {
 
 }
+

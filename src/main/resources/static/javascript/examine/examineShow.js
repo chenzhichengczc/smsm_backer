@@ -8,10 +8,10 @@ $(function () {
     }
 
     $.ajax({
-        url: 'http://123.207.230.97:8090/backer/api/userApplication/getUserApplication',
+        url: 'http://106.52.215.30:80/backer/api/userApplication/getUserApplication',
         type: 'get', //GET
         async: true,    //或false,是否异步
-        headers: {},
+        headers: {"token": getCookie("token")},
         data: {
             id: id
         },
@@ -181,6 +181,11 @@ $(function () {
                 $("#applicantIdentityCardPhoneSrc").attr("src", data.applicantIdentityCardPhoneSrc)
                 $("#applicantIdentityCardPhoneReverseSrc").attr("src", data.applicantIdentityCardPhoneReverseSrc)
                 $("#applicantDiplomaSrc").attr("src", data.applicantDiplomaSrc)
+                $("#ticketNumber").html(data.ticketNumber)
+                $("#ticketExamTime").html(data.ticketExamTime)
+                $("#ticketExamAddressOne").html(data.ticketExamAddressOne)
+                $("#ticketExamAddressTwo").html(data.ticketExamAddressTwo)
+                $("#ticketRemark").html(data.ticketRemark)
 
             } else {
                 layer.msg('获取简历信息失败', {icon: 2, time: 1000});
@@ -198,12 +203,13 @@ function pass() {
     layer.confirm('是否提交通过？', function (index) {
         $.ajax({
             type: 'POST',
-            url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
+            url: 'http://106.52.215.30:80/backer/api/userApplication/changeStatus',
             dataType: 'json',
             data: {
                 id: id,
                 checkResult: 1
             },
+            headers:{"token": getCookie("token")},
             success: function (data) {
                 if (data.code == 0) {
                     layer.msg('已审批通过!', {icon: 1, time: 1000});
@@ -243,13 +249,14 @@ function fail() {
         btn1: function (index, layero) {
             $.ajax({
                 type: 'POST',
-                url: 'http://123.207.230.97:8090/backer/api/userApplication/changeStatus',
+                url: 'http://106.52.215.30:80/backer/api/userApplication/changeStatus',
                 dataType: 'json',
                 data: {
                     id: id,
                     checkResult: 2,
                     checkReport: $("#checkReport1").val()
                 },
+                headers:{"token": getCookie("token")},
                 success: function (data) {
                     if (data.code == 0) {
                         layer.msg('已审批不通过!', {icon: 1, time: 1000});

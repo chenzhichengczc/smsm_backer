@@ -4,6 +4,8 @@ package com.hc.smsm_backer.modules.manager.service;
 import com.baomidou.mybatisplus.service.IService;
 import com.hc.smsm_backer.modules.manager.entity.ManagerEntity;
 
+import java.util.List;
+
 
 /**
  * 用户表
@@ -14,6 +16,15 @@ import com.hc.smsm_backer.modules.manager.entity.ManagerEntity;
  */
 public interface ManagerService extends IService<ManagerEntity> {
 
-    public ManagerEntity login(String loginAccount, String loginPassword);
+
+    public List<ManagerEntity> managerList(Integer id);
+
+    public void insertManager(ManagerEntity managerEntity);
+
+    public void updateStatus(ManagerEntity managerEntity);
+
+    public void deleteManager(Integer id);
+
+    public void updateManager(ManagerEntity managerEntity);
 }
 

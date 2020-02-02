@@ -1,5 +1,6 @@
 package com.hc.smsm_backer.modules.information.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.hc.smsm_backer.common.exception.JcException;
 import com.hc.smsm_backer.modules.information.entity.InformationEntity;
@@ -17,40 +18,62 @@ public class InformationServiceImpl extends ServiceImpl<InformationMapper, Infor
     private InformationMapper informationMapper;
 
 
-
-
     @Override
-    public List<InformationEntity> getInformationList(){
-        List<InformationEntity> informationEntityList = informationMapper.getInformationList();
+    public List<InformationEntity> getInformationList(Integer id) {
+
+        List<InformationEntity> informationEntityList = null;
+
+        if (id == null) {
+            informationEntityList = informationMapper.selectList(new EntityWrapper<InformationEntity>().orderBy("create_time", false));
+        } else {
+            informationEntityList = informationMapper.selectList(new EntityWrapper<InformationEntity>().eq("id", id).orderBy("create_time", false));
+        }
+
         return informationEntityList;
     }
 
     @Override
-    public void insertInformation(InformationEntity informationEntity){
+    public void insertInformation(InformationEntity informationEntity) {
         Integer result = informationMapper.insertInformation(informationEntity);
-        if(result == null || result == 0){
+        if (result == null || result == 0) {
             throw new JcException("");
         }
     }
 
     @Override
-    public InformationEntity getInformationById(Integer informationId){
+    public InformationEntity getInformationById(Integer informationId) {
         InformationEntity informationEntity = informationMapper.getInformationById(informationId);
         return informationEntity;
     }
 
     @Override
-    public void removeInformationById(Integer informationId){
-        Integer result =  informationMapper.removeInformationById(informationId);
-        if(result == null || result == 0){
+    public void removeInformationById(Integer informationId) {
+        Integer result = informationMapper.removeInformationById(informationId);
+        if (result == null || result == 0) {
             throw new JcException("");
         }
     }
 
     @Override
-    public void updateInformation(InformationEntity informationEntity){
+    public void updateInformation(InformationEntity informationEntity) {
         Integer result = informationMapper.updateById(informationEntity);
-        if(result == null || result == 0){
+        if (result == null || result == 0) {
+            throw new JcException("");
+        }
+    }
+
+    @Override
+    public void onlineInformationById(Integer informationId) {
+        Integer result = informationMapper.onlineInformationById(informationId);
+        if (result == null || result == 0) {
+            throw new JcException("");
+        }
+    }
+
+    @Override
+    public void offlineInformationById(Integer informationId) {
+        Integer result = informationMapper.offlineInformationById(informationId);
+        if (result == null || result == 0) {
             throw new JcException("");
         }
     }

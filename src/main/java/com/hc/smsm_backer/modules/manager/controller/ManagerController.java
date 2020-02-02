@@ -34,6 +34,36 @@ public class ManagerController {
         return ResponseUtil.success(managerEntity);
     }*/
 
+    @RequestMapping(value = "/api/manager/managerList", method = RequestMethod.GET)
+    public ResponseUtil managerList(@RequestParam(value = "id",required = false) Integer id) {
+        List<ManagerEntity> managerEntityList = managerService.managerList(id);
+        return ResponseUtil.success(managerEntityList);
+    }
+
+    @RequestMapping(value = "/api/manager/insertManager", method = RequestMethod.POST)
+    public ResponseUtil insertManager(ManagerEntity managerEntity) {
+        managerService.insertManager(managerEntity);
+        return ResponseUtil.success();
+    }
+
+    @RequestMapping(value = "/api/manager/updateStatus", method = RequestMethod.POST)
+    public ResponseUtil updateStatus(ManagerEntity managerEntity) {
+        managerService.updateStatus(managerEntity);
+        return ResponseUtil.success();
+    }
+
+    @RequestMapping(value = "/api/manager/deleteManager", method = RequestMethod.POST)
+    public ResponseUtil deleteManager(Integer id) {
+        managerService.deleteManager(id);
+        return ResponseUtil.success();
+    }
+
+
+    @RequestMapping(value = "/api/manager/updateManager", method = RequestMethod.POST)
+    public ResponseUtil updateManager(ManagerEntity managerEntity) {
+        managerService.updateManager(managerEntity);
+        return ResponseUtil.success();
+    }
 }
 
 

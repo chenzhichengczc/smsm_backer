@@ -8,12 +8,10 @@ $(function () {
     }
 
     $.ajax({
-        url:'http://123.207.230.97:8090/backer/api/postApplication/selectOne',
+        url:'http://106.52.215.30:80/backer/api/postApplication/selectOne',
         type:'get', //GET
         async:false,    //或false,是否异步
-        headers:{
-
-        },
+        headers:{"token": getCookie("token")},
         data:{
             id : id
         },

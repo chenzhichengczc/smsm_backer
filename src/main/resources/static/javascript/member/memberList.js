@@ -8,7 +8,8 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://123.207.230.97:8090/backer/api/user/getUser",
+            "url": "http://106.52.215.30:80/backer/api/user/getUser",
+            "headers" :{"token":getCookie("token")},
             "dataSrc": function (data) {
                 $("#totalData").html(data.data.length)
                 return data.data
@@ -52,7 +53,12 @@ $(function () {
             }, {
                 targets: 6,
                 render: function (data, type, row) {
-                   return data.birthTime.split(" ")[0]
+                    if(data.birthTime == null){
+                        return "";
+                    }else {
+                        return data.birthTime.split(" ")[0]
+                    }
+
                 }
             }],
         "fnDrawCallback": function (oSettings) {

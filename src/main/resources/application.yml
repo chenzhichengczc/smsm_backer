@@ -3,7 +3,7 @@ server:
     uri-encoding: UTF-8
     max-threads: 1000
     min-spare-threads: 30
-  port: 8090
+  port: 80
   connection-timeout: 5000ms
   servlet:
     session:
@@ -12,7 +12,6 @@ server:
 #    key-store: classpath:www.xingdongqi.com.jks
 #    key-store-password: jc08e3ot28
 #    key-store-type: JKS
-
 
 spring:
   # 环境 dev|test|prod 开发/测试/上线

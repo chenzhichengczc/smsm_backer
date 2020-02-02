@@ -25,4 +25,7 @@ public interface InformationMapper extends BaseMapper<InformationEntity> {
 
     public Integer removeInformationById(@Param(value = "informationId") Integer informationId);
 
+    public Integer onlineInformationById(@Param(value = "informationId") Integer informationId);
+
+    public Integer offlineInformationById(@Param(value = "informationId") Integer informationId);
 }

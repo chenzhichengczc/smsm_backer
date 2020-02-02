@@ -67,7 +67,7 @@ public class UserApplicationServiceImpl extends ServiceImpl<UserApplicationMappe
     }
 
     @Override
-    public void changeStatus(UserApplicationEntity userApplicationEntity) {
+    public void updateStatusAndTicket(UserApplicationEntity userApplicationEntity) {
         Integer row = userApplicationMapper.update(userApplicationEntity, new EntityWrapper<UserApplicationEntity>().eq("id", userApplicationEntity.getId()));
 
         if(row != 1){
