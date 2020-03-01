@@ -71,7 +71,7 @@ $(function () {
 
                     if (data.paymentStatus != 0 && data.checkResult == 0) {
                         html = html +
-                            '<a style="text-decoration:none" class="ml-5" onclick="pass(' + data.id + ',\'' + data.applicantName + '\',' + data.applicantGender + ',\'' + window.btoa(data.applicantIdentityCard) + '\')" href="javascript:;" title="通过/生成准考证">' +
+                            '<a style="text-decoration:none" class="ml-5" onclick="pass(' + data.id + ',\'' + data.applicantName + '\',' + data.applicantGender + ',\'' + window.btoa(window.encodeURIComponent(data.applicantIdentityCard)) + '\')" href="javascript:;" title="通过/生成准考证">' +
                             '<i class="Hui-iconfont">&#xe6a7;</i></a> ' +
                             '<a style="text-decoration:none" class="ml-5" onclick="fail(' + data.id + ')" ' +
                             'href="javascript:;" title="不通过"><i class="Hui-iconfont">&#xe6a6;</i></a>'

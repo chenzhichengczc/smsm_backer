@@ -3,7 +3,7 @@ $(function () {
     var id = getParameter("id");
     var applicantName = decodeURIComponent((location.search.split("?")[1].split("&")[1].split("=")[1]));
     var applicantGender = getParameter("applicantGender");
-    var applicantIdentityCard = window.atob(getParameter("applicantIdentityCard"));
+    var applicantIdentityCard = window.decodeURIComponent(window.atob(getParameter("applicantIdentityCard")))
 
     if (isEmpty123(id)) {
         layer.msg('信息异常!', {icon: 2, time: 1000});
