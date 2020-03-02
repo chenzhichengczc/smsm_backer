@@ -1,13 +1,11 @@
-package com.hc.smsm_backer.modules.user.service.impl;
+package com.hc.smsm_backer.modules.applicant.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.hc.smsm_backer.modules.user.entity.UserEntity;
-import com.hc.smsm_backer.modules.user.mapper.UserMapper;
-import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-
-
-import com.hc.smsm_backer.modules.user.service.UserService;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.hc.smsm_backer.modules.applicant.entity.UserEntity;
+import com.hc.smsm_backer.modules.applicant.mapper.UserMapper;
+import com.hc.smsm_backer.modules.applicant.service.UserService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;

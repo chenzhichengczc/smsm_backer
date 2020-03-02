@@ -71,7 +71,7 @@ function sumbitForm() {
 
     $.ajax({
         type: 'POST',
-        url: 'http://106.52.215.30:80/backer/api/userApplication/updateStatusAndTicket',
+        url: 'http://localhost:80/backer/api/userApplication/updateStatusAndTicket',
         dataType: 'json',
         data: {
             id: id,
@@ -82,7 +82,7 @@ function sumbitForm() {
             ticketExamAddressTwo:ticketExamAddressTwo,
             ticketRemark:ticketRemark
         },
-        "header": {
+        "headers": {
             "token": getCookie("token")
         },
         success: function (data) {

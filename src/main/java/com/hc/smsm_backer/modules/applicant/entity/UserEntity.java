@@ -1,4 +1,4 @@
-package com.hc.smsm_backer.modules.user.entity;
+package com.hc.smsm_backer.modules.applicant.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+
 /**
  * 用户表
  *

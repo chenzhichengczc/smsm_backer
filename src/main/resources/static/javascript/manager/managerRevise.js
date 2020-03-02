@@ -9,7 +9,7 @@ $(function () {
     sessionStorage.setItem("managerId", id)
 
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/manager/managerList',
+        url: 'http://localhost:80/backer/api/manager/managerList',
         type: 'get', //GET
         async: true,    //或false,是否异步
         headers: {
@@ -60,7 +60,7 @@ function updateForm() {
     }
 
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/manager/updateManager',
+        url: 'http://localhost:80/backer/api/manager/updateManager',
         type: 'POST', //GET
         async: true,    //或false,是否异步
         headers: {

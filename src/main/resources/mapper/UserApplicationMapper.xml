@@ -11,7 +11,7 @@
         <result property="postApplicationId" column="post_application_id"/>
         <result property="createTime" column="create_time"/>
         <result property="paymentStatus" column="payment_status"/>
-        <result property="payId" column="pay_id"/>
+        <result property="alipayId" column="alipay_id"/>
         <result property="checkResult" column="check_result"/>
         <result property="checkReport" column="check_report"/>
         <result property="applicantName" column="applicant_name"/>
@@ -55,7 +55,7 @@
         <result property="postApplicationId" column="post_application_id"/>
         <result property="createTime" column="create_time"/>
         <result property="paymentStatus" column="payment_status"/>
-        <result property="payId" column="pay_id"/>
+        <result property="alipayId" column="alipay_id"/>
         <result property="checkResult" column="check_result"/>
         <result property="checkReport" column="check_report"/>
         <result property="applicantName" column="applicant_name"/>
@@ -105,7 +105,7 @@
                     a.post_application_id,
                     a.create_time,
                     a.payment_status,
-                    a.pay_id,
+                    a.alipay_id,
                     a.check_result,
                     a.check_report,
                     a.applicant_name,
@@ -149,7 +149,7 @@
                     post_application_id,
                     create_time,
                     payment_status,
-                    pay_id,
+                    alipay_id,
                     check_result,
                     check_report,
                     applicant_name,
@@ -190,7 +190,7 @@
                     #{postApplicationId},
                     #{createTime},
                     #{paymentStatus},
-                    #{payId},
+                    #{alipayId},
                     #{checkResult},
                     #{checkReport},
                     #{applicantName},
@@ -235,7 +235,7 @@
                     post_application_id,
                     create_time,
                     payment_status,
-                    pay_id,
+                    alipay_id,
                     check_result,
                     check_report,
                     applicant_name,
@@ -285,7 +285,7 @@
         a.post_application_id,
         a.create_time,
         a.payment_status,
-        a.pay_id,
+        a.alipay_id,
         a.check_result,
         a.check_report,
         a.applicant_name,

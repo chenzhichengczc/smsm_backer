@@ -231,7 +231,7 @@
 					var id = get_URL();
 
 					$.ajax({
-						url: 'http://106.52.215.30:80/backer/api/information/getById',
+						url: 'http://localhost:80/backer/api/information/getById',
 						type:  'GET', //GETasync: false,    //或false,是否异步
 						headers: {"token": getCookie("token")},
 						data: {informationId: id},

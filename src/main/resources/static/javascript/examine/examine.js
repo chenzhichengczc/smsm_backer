@@ -6,8 +6,8 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://106.52.215.30:80/backer/api/userApplication/getUserApplication",
-            "header": {
+            "url": "http://localhost:80/backer/api/userApplication/getUserApplication",
+            "headers": {
                 "token": getCookie("token")
             },
             "dataSrc": function (data) {
@@ -118,14 +118,14 @@ function fail(id) {
         btn1: function (index, layero) {
             $.ajax({
                 type: 'POST',
-                url: 'http://106.52.215.30:80/backer/api/userApplication/changeStatus',
+                url: 'http://localhost:80/backer/api/userApplication/changeStatus',
                 dataType: 'json',
                 data: {
                     id: id,
                     checkResult: 2,
                     checkReport: $("#checkReport").val()
                 },
-                "header": {
+                "headers": {
                     "token": getCookie("token")
                 },
                 success: function (data) {

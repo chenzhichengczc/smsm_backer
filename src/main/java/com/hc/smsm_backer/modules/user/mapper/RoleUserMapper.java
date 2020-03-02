@@ -44,7 +44,7 @@ public interface RoleUserMapper extends BaseMapper<RoleUserEntity> {
     /**
      * 检查用户状态
      */
-    int checkUserBanStatus(String username);
+    Integer checkUserBanStatus(String username);
 
     /**
      * 获得用户角色默认的权限

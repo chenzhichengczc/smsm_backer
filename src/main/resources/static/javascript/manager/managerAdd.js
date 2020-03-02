@@ -28,7 +28,7 @@ function sumbitForm() {
     }
 
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/manager/insertManager',
+        url: 'http://localhost:80/backer/api/manager/insertManager',
         type: 'POST', //GET
         async: false,    //或false,是否异步
         headers: {

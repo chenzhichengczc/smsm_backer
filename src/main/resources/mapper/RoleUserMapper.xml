@@ -30,7 +30,7 @@
         WHERE username = #{username}
     </update>
 
-    <select id="checkUserBanStatus" parameterType="String" resultType="int">
+    <select id="checkUserBanStatus" parameterType="String" resultType="Integer">
         SELECT ban
         FROM role_user
         WHERE username = #{username}

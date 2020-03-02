@@ -28,7 +28,7 @@ public class UserApplicationPO {
     /**
      * 支付id
      */
-    private Integer payId;
+    private Integer alipayId;
     /**
      * 审批结果 0.审批中 1.审批通过 2.审批不通过
      */

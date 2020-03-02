@@ -1,11 +1,12 @@
 $(function () {
+
     $('.table-sort').dataTable({
 
         "ordering": false,
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://106.52.215.30:80/backer/api/postApplication/getPostList",
+            "url": "http://localhost:80/backer/api/postApplication/getPostList",
             "headers":{"token":getCookie("token")},
             "dataSrc": function (data) {
                 $("#totleSize").html(data.data.length)
@@ -90,7 +91,7 @@ function datadel() {
 
 function deleteMethod(array) {
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/postApplication/deletePostList',
+        url: 'http://localhost:80/backer/api/postApplication/deletePostList',
         type: 'POST', //GET
         async: false,    //或false,是否异步
         headers:{"token": getCookie("token")},
@@ -118,6 +119,8 @@ function deleteMethod(array) {
             alert("服务器异常，请稍后再试！")
         }
     })
+
+
 
 }
 

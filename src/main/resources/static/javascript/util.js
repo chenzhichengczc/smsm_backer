@@ -12,10 +12,10 @@ function isEmpty123(value){
 }
 
 
-function setCookie(name,value)
+function setCookie(name,value,time)
 {
     var exp = new Date();
-    exp.setTime(exp.getTime() + 2*60*60*1000);
+    exp.setTime(exp.getTime() + time);
     document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 }
 

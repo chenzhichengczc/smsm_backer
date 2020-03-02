@@ -21,7 +21,7 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUserEnt
     @Resource
     private RoleUserMapper roleUserMapper;
 
-    @Autowired
+    @Resource
     private JWTUtil jwtUtil;
 
     @Override
@@ -36,11 +36,45 @@ public class RoleUserServiceImpl extends ServiceImpl<RoleUserMapper, RoleUserEnt
         }else if (!roleUserEntity.getPassword().equals(password)) {
             throw new JcException(401, "用户名不存在或密码错误");
         }else {
-            String remoteAddrIp = IpConfig.getRemoteAddr(request);
-            String token = jwtUtil.createToken(username, remoteAddrIp);
+            String token = jwtUtil.createToken(username,"");
             map.put("token", token);
             map.put("roleUser", roleUserEntity);
         }
         return map;
+    }
+
+    @Override
+    public String getUserPassword(String username) {
+        RoleUserEntity roleUserEntity = roleUserMapper.getRoleUser(username);
+        if(roleUserEntity == null){
+            return null;
+        }else {
+            return roleUserEntity.getPassword();
+        }
+
+    }
+
+    @Override
+    public Integer checkUserBanStatus(String username) {
+        Integer ban = roleUserMapper.checkUserBanStatus(username);
+        return ban;
+    }
+
+    @Override
+    public String getRolePermission(String username) {
+        String rolePermission = roleUserMapper.getRolePermission(username);
+        return rolePermission;
+    }
+
+    @Override
+    public String getPermission(String username) {
+        String permission = roleUserMapper.getPermission(username);
+        return permission;
+    }
+
+    @Override
+    public String getRole(String username) {
+        String role = roleUserMapper.getRole(username);
+        return role;
     }
 }

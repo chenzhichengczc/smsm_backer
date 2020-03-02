@@ -4,6 +4,7 @@ package com.hc.smsm_backer.common.exception;
 import com.hc.smsm_backer.common.utils.ResponseUtil;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -41,8 +42,16 @@ public class JcExceptionHandler {
     @ExceptionHandler(AuthenticationException.class)
     public ResponseUtil handleAuthenticationException(AuthenticationException e){
         System.out.println("hello");
-        return ResponseUtil.error(403, e.getMessage());
+        return ResponseUtil.error(401, "账号或密码不正确");
+    }
 
+    /**
+     * token无效异常
+     */
+    @ExceptionHandler(IncorrectCredentialsException.class)
+    public ResponseUtil handleTokenException(IncorrectCredentialsException e){
+        System.out.println("true2132 = " + true);
+        return ResponseUtil.error(403, e.getMessage());
     }
 
 
@@ -72,7 +81,7 @@ public class JcExceptionHandler {
     @ExceptionHandler(ShiroException.class)
     public ResponseUtil handle401(ShiroException e) {
         System.out.println("no");
-        return ResponseUtil.error(401, e.getMessage());
+        return ResponseUtil.error(402, e.getMessage());
     }
 
 

@@ -1,10 +1,10 @@
 package com.hc.smsm_backer.modules.user.controller;
 
 
-import com.hc.smsm_backer.common.utils.JWTUtil;
-import com.hc.smsm_backer.common.utils.RedisUtil;
-import com.hc.smsm_backer.common.utils.ResponseUtil;
+import com.hc.smsm_backer.common.utils.*;
 import com.hc.smsm_backer.modules.user.service.RoleUserService;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -27,7 +28,7 @@ import java.util.Map;
 @RequestMapping("/backer")
 public class RoleUserController {
 
-    @Autowired
+    @Resource
     private JWTUtil jwtUtil;
 
     @Resource
@@ -36,26 +37,36 @@ public class RoleUserController {
     @Resource
     private RedisUtil redisUtil;
 
-    @RequestMapping(value = "/api/manager/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/manager/login", method = RequestMethod.POST)
     public ResponseUtil login(@RequestParam(value = "username") String username,
                               @RequestParam(value = "password") String password,
                               HttpServletRequest request) {
-        request.getSession().setAttribute("username", username);
-        Map<String, Object> map = roleUserService.getRoleUser(username, password, request);
+
+        try{
+            Subject subject = ShiroUtils.getSubject();
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+            subject.login(token);
+        }catch (UnknownAccountException e) {
+            return ResponseUtil.error(401, e.getMessage());
+        }
+        String ip = IpConfig.getRemoteAddr(request);
+        String token = jwtUtil.createToken(username, ip);
+        Map<String, Object> map = new HashMap<>();
+        map.put("token", token);
 
         return ResponseUtil.success(map);
 
     }
 
-    @RequestMapping(value = "/logout",method = RequestMethod.POST)
+    /*@RequestMapping(value = "/auth/logout",method = RequestMethod.GET)
     public ResponseUtil logout(HttpServletRequest httpServletRequest){
-        String token=httpServletRequest.getHeader("token");
-        String jwtid=jwtUtil.getJwtIdByToken(token);
-        System.out.println("jwtid:"+jwtid);
-        redisUtil.deleteCache("JWT-SESSION-"+jwtid);
-        httpServletRequest.getSession().setAttribute("username", null);
+        Subject subject = ShiroUtils.getSubject();
+        subject.logout();
+        System.out.println("subject = " + subject);
         return ResponseUtil.success();
-    }
+    }*/
+
+    
 
 
 

@@ -8,7 +8,7 @@ $(function () {
     }
 
     $.ajax({
-        url:'http://106.52.215.30:80/backer/api/postApplication/selectOne',
+        url:'http://localhost:80/backer/api/postApplication/selectOne',
         type:'get', //GET
         async:false,    //或false,是否异步
         headers:{"token": getCookie("token")},
@@ -118,7 +118,7 @@ function updateForm() {
     }
 
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/postApplication/updatePost',
+        url: 'http://localhost:80/backer/api/postApplication/updatePost',
         type: 'POST', //GET
         async: true,    //或false,是否异步
         headers:{"token": getCookie("token")},

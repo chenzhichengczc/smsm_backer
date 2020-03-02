@@ -32,7 +32,7 @@ public class JWTUtil {
      * @param username 用户名
      * @return 加密的token
      */
-    public String createToken(String username, String remoteAddrIp) {
+    public String createToken(String username, String ip) {
         try {
             String jwtid= UUID.randomUUID().toString();
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
@@ -41,6 +41,7 @@ public class JWTUtil {
             String token = JWT.create()
                     .withClaim("username", username)
                     .withClaim("jwt-id", jwtid)
+                    .withClaim("ip", ip)
                     //到期时间
                     .withExpiresAt(date)
                     //创建一个新的JWT，并使用给定的算法进行标记
@@ -60,7 +61,7 @@ public class JWTUtil {
      * @param username 用户名
      * @return 是否正确
      */
-    public  boolean verify(String token, String username) {
+    public  boolean verify(String token, String username, String ip) {
         try {
             //1 . 根据token解密，解密出jwt-id , 先从redis中查找出redisToken，匹配是否相同
             String redisToken =  (String) redisUtil.get("JWT-SESSION-" + getJwtIdByToken(token));
@@ -71,15 +72,26 @@ public class JWTUtil {
             Algorithm algorithm = Algorithm.HMAC256(SECRET);
             //在token中附带了username信息
             JWTVerifier verifier = JWT.require(algorithm)
-                    .withClaim("username", username)
                     .build();
             //验证 token
             DecodedJWT verify = verifier.verify(token);
             Map<String, Claim> claims = verify.getClaims();
             String username1 = claims.get("username").asString();
+            String ip1 = claims.get("ip").asString();
             if(!username.equals(username1)){
                 return false;
             }
+            System.out.println("ip1 = " + ip1);
+            System.out.println("ip = " + ip);
+            if(!ip1.equals(ip)){
+                return false;
+            }
+            JWT.require(algorithm)
+                    .withClaim("jwt-id", getJwtIdByToken(redisToken))
+                    .withClaim("username", username)
+                    .withClaim("ip", ip)
+                    .acceptExpiresAt(System.currentTimeMillis() + EXPIRE_TIME ) //JWT 正确的配置续期姿势
+                    .build();
             System.out.println("verify = " + username1);
             redisUtil.set("JWT-SESSION-" + getJwtIdByToken(token), redisToken, EXPIRE_TIME / 1000);
             return true;

@@ -2,16 +2,15 @@ $(function () {
 
 
 
-
     var i = 1;
-
+    console.log(getCookie("token"))
     $('.table-sort').dataTable({
         "ordering": false,
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://106.52.215.30:80/backer/api/information/list",
-            "header": {
+            "url": "http://localhost:80/backer/api/information/list",
+            "headers": {
                 "token": getCookie("token")
             },
             "dataSrc": function (data) {
@@ -175,7 +174,7 @@ function article_shenqing(obj, id) {
 
 function deleteInformation(obj){
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/information/delete',
+        url: 'http://localhost:80/backer/api/information/delete',
         type: 'POST', //GET
         async: false,    //或false,是否异步
         headers:{"token": getCookie("token")},
@@ -208,7 +207,7 @@ function deleteInformation(obj){
 function onlineInformation(obj) {
 
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/information/online',
+        url: 'http://localhost:80/backer/api/information/online',
         type: 'POST', //GET
         async: false,    //或false,是否异步
         headers:{"token": getCookie("token")},
@@ -241,7 +240,7 @@ function onlineInformation(obj) {
 
 function offlineInformation(obj) {
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/information/offline',
+        url: 'http://localhost:80/backer/api/information/offline',
         type: 'POST', //GET
         async: false,    //或false,是否异步
         headers:{"token": getCookie("token")},

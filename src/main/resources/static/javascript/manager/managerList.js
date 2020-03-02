@@ -7,8 +7,8 @@ $(function () {
         bLengthChange: false,
 
         "ajax": {
-            "url": "http://106.52.215.30:80/backer/api/manager/managerList",
-            "header": {
+            "url": "http://localhost:80/backer/api/manager/managerList",
+            "headers": {
                 "token": getCookie("token")
             },
             "dataSrc": function (data) {
@@ -93,7 +93,7 @@ function admin_add(title, url, w, h) {
 function admin_del(id) {
     layer.confirm('确认要删除吗？', function (index) {
         $.ajax({
-            url: 'http://106.52.215.30:80/backer/api/manager/deleteManager',
+            url: 'http://localhost:80/backer/api/manager/deleteManager',
             type: 'POST', //GET
             async: true,    //或false,是否异步
             headers: {
@@ -134,7 +134,7 @@ function admin_stop(id, status) {
     layer.confirm('确认要停用吗？', function (index) {
 
         $.ajax({
-            url: 'http://106.52.215.30:80/backer/api/manager/updateStatus',
+            url: 'http://localhost:80/backer/api/manager/updateStatus',
             type: 'POST', //GET
             async: true,    //或false,是否异步
             headers: {
@@ -172,7 +172,7 @@ function admin_start(id, status) {
     layer.confirm('确认要启用吗？', function (index) {
         //此处请求后台程序，下方是成功后的前台处理……
         $.ajax({
-            url: 'http://106.52.215.30:80/backer/api/manager/updateStatus',
+            url: 'http://localhost:80/backer/api/manager/updateStatus',
             type: 'POST', //GET
             async: true,    //或false,是否异步
             headers: {

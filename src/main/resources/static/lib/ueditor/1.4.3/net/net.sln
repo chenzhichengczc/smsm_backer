@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "net", "http://106.52.215.30:7957", "{36F65A7F-64E7-4E05-BBC2-EAB6E4EDAF30}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "net", "http://localhost:80:7957", "{36F65A7F-64E7-4E05-BBC2-EAB6E4EDAF30}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"

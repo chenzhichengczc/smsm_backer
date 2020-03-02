@@ -8,7 +8,7 @@
     "imageCompressEnable": true,
     "imageCompressBorder": 1600,
     "imageInsertAlign": "none",
-    "imageUrlPrefix": "http://106.52.215.30:8080",
+    "imageUrlPrefix": "http://localhost:80:8080",
     "imagePathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}",
 
     "scrawlActionName": "uploadscrawl",

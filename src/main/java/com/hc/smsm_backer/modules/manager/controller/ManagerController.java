@@ -1,3 +1,4 @@
+
 package com.hc.smsm_backer.modules.manager.controller;
 
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
+
 /**
  * 用户表
  *
@@ -21,6 +23,7 @@ import java.util.List;
  * @date 2020-01-11 19:16:46
  */
 
+
 @RestController
 @RequestMapping("/backer")
 public class ManagerController {
@@ -28,11 +31,13 @@ public class ManagerController {
     @Resource
     private ManagerService managerService;
 
-    /*@RequestMapping(value = "/api/manager/login", method = RequestMethod.POST)
+
+/*@RequestMapping(value = "/api/manager/login", method = RequestMethod.POST)
     public ResponseUtil login(String loginAccount, String loginPassword) {
         ManagerEntity managerEntity = managerService.login(loginAccount,loginPassword);
         return ResponseUtil.success(managerEntity);
     }*/
+
 
     @RequestMapping(value = "/api/manager/managerList", method = RequestMethod.GET)
     public ResponseUtil managerList(@RequestParam(value = "id",required = false) Integer id) {
@@ -65,6 +70,7 @@ public class ManagerController {
         return ResponseUtil.success();
     }
 }
+
 
 
 

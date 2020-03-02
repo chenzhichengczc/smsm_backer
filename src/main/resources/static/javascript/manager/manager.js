@@ -9,7 +9,7 @@ function loginManager() {
 
 
     $.ajax({
-        url: 'http://106.52.215.30:80/backer/api/manager/login',
+        url: 'http://localhost:80/backer/manager/login',
         type: 'POST', //GET
         async: true,    //或false,是否异步
         header: {},
@@ -20,13 +20,14 @@ function loginManager() {
         timeout: 50000,    //超时时间
         dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success: function (data) {
+            debugger
            if(data.code == 401){
                layer.msg(data.msg, {icon: 2, time: 1000});
            }else if(data.code == 0){
                layer.msg("登录成功，欢迎您", {icon: 1, time: 1000});
-               setCookie("token", data.data.token)
+               setCookie("token", data.data.token, 24*60*60*1000*30)
                setTimeout(function () {
-                   window.location.href = "http://106.52.215.30:80";
+                   window.location.href = "/index.html";
                },1500)
 
            }
